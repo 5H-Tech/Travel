@@ -17,6 +17,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
         android:layout_gravity="center"
-
+        tools:listitem="@layout/activity_travil_item"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

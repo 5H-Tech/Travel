@@ -49,7 +49,7 @@ public class SignIn extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(v.getContext(),Show_travilsActivity.class);
+                Intent intent =new Intent(v.getContext(),Home.class);
                 startActivity(intent);
             }
         });
