@@ -41,7 +41,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 choise="Airplane";
-                Intent intent =new Intent(v.getContext(),Show_travilsActivity.class);
+                Intent intent =new Intent(v.getContext(),Destination.class);
                 startActivity(intent);
                 Toast.makeText(Home.this,"your transport is "+choise,Toast.LENGTH_LONG).show();
             }
@@ -50,7 +50,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 choise="Traine";
-                Intent intent =new Intent(v.getContext(),Show_travilsActivity.class);
+                Intent intent =new Intent(v.getContext(),Destination.class);
                 startActivity(intent);
                 Toast.makeText(Home.this,"your transport is "+choise,Toast.LENGTH_LONG).show();
             }
@@ -59,16 +59,16 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 choise="Ticket";
-                Intent intent =new Intent(v.getContext(),Show_travilsActivity.class);
+                Intent intent =new Intent(v.getContext(),Destination.class);
                 startActivity(intent);
-                Toast.makeText(Home.this,"your transport is "+choise,Toast.LENGTH_LONG).show();
+                Toast.makeText(Home.this,"your "+choise,Toast.LENGTH_LONG).show();
             }
         });
         bus_choise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 choise="Bus";
-                Intent intent =new Intent(v.getContext(),Show_travilsActivity.class);
+                Intent intent =new Intent(v.getContext(),Destination.class);
                 startActivity(intent);
                 Toast.makeText(Home.this,"your transport is "+choise,Toast.LENGTH_SHORT).show();
 

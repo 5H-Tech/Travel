@@ -9,10 +9,12 @@
         android:roundIcon="@drawable/ic_out_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelApp">
+        <activity android:name=".Destination"
+            android:label="Destination"
+            android:theme="@style/DemoTheme"></activity>
         <activity
             android:name=".Home"
-            android:theme="@style/DemoTheme"
-            />
+            android:theme="@style/DemoTheme" />
         <activity
             android:name=".SignIn"
             android:theme="@style/DemoTheme" />
