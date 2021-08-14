@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class SignUp extends AppCompatActivity {
+    int num =4;
     //public static ArrayList<User> users= new ArrayList<User>() ;
     private String s_name ,
             s_email,
