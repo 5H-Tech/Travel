@@ -49,15 +49,8 @@ public class SignIn extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int index = signin();
-                if (index == -1)
-                {
-                    Toast.makeText(v.getContext(),"USER NO FOUND", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    s= new String("willcome mr :"+ users.get(index).getS_name()) ;
-
-                }
+                Intent intent =new Intent(v.getContext(),Show_travilsActivity.class);
+                startActivity(intent);
             }
         });
 
