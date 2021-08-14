@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import static android.content.ContentValues.TAG;
 
 public class SignUp extends AppCompatActivity {
     int num =4;
+    boolean up=false;
     private FirebaseAuth mAuth;
     //public static ArrayList<User> users= new ArrayList<User>() ;
     private String s_name ,
@@ -65,53 +68,77 @@ public class SignUp extends AppCompatActivity {
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+              if (signup())
+              {
+                  Toast.makeText(v.getContext(), "you have registered successfully", Toast.LENGTH_LONG).show();
+                  Intent intent = new Intent(v.getContext(), MainActivity.class);
+                  startActivityForResult(intent, 0);
+              }
+
+
+
+
+    }
+});
+
+
+    }
+
+    private boolean signup() {
+
                 String name = t_name.getText().toString();
                 String email = t_emil.getText().toString().trim();
                 String phone = t_phone.getText().toString();
                 String pass = t_pass.getText().toString().trim();
                 String s_cpass = t_cpass.getText().toString();
-                mAuth.createUserWithEmailAndPassword(email, pass)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Log.d(TAG, "createUserWithEmail:success");
-                                    FirebaseUser user = mAuth.getCurrentUser();
 
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                }
+        if (pass.isEmpty() || name.isEmpty() || email.isEmpty() || phone.isEmpty() || s_cpass.isEmpty()) {
+            Toast.makeText(this, "You must fill all filds ... try again ", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (!pass.equals(s_cpass)) {
+            Toast.makeText(this, "your confirmation password is incorrect", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+        {
+            t_emil.setError("Eamil is invalid");
+            t_emil.requestFocus();
+            return false;
+        }
 
-                                // ...
+        else {
+
+            mAuth.createUserWithEmailAndPassword(email, pass)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getApplication(), "Registeration succesfully", Toast.LENGTH_LONG).show();
+                                // Sign in success, update UI with the signed-in user's information
+                                up=true;
+                                Log.d(TAG, "createUserWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+
                             }
-                        });
+                            else if (task.getException() instanceof FirebaseAuthUserCollisionException)
+                            {
+                                Toast.makeText(getApplication(), "this Email is already exist", Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                // If sign in fails, display a message to the user.
+                                up=false;
+                                Toast.makeText(getApplication(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            }
 
-            }
-        });
+                            // ...
+                        }
+                    });
 
+           return up;
+        }
 
     }
-
-//    private boolean signup() {
-//
-//
-//
-//        if (pass.isEmpty() || name.isEmpty() || email.isEmpty() || phone.isEmpty() || s_cpass.isEmpty()) {
-//            Toast.makeText(this, "You must fill all filds ... try again ", Toast.LENGTH_SHORT).show();
-//            return false;
-//        } else if (!pass.equals(s_cpass)) {
-//            Toast.makeText(this, "your confirmation password is incorrect", Toast.LENGTH_LONG).show();
-//            return false;
-//        }
-//        else {
-//
-//
-//            return true;
-//        }
-//
-//    }
 
     public static boolean isShow = true;
     public static void showPassword (EditText pass){
