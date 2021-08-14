@@ -5,12 +5,15 @@ public class User {
             s_email,
             s_phone,
             s_pass;
-
+    private  static int id=20210;
+    private int ID;
     public User(String s_name, String s_email, String s_phone, String s_pass) {
         this.s_name = s_name;
         this.s_email = s_email;
         this.s_phone = s_phone;
         this.s_pass = s_pass;
+        id++;
+        ID=id;
     }
 
     public String getS_name() {
