@@ -86,7 +86,7 @@ public class SignUp extends AppCompatActivity {
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< Updated upstream
+
               if (signup())
               {
                   Toast.makeText(v.getContext(), "you have registered successfully", Toast.LENGTH_LONG).show();
@@ -95,12 +95,12 @@ public class SignUp extends AppCompatActivity {
               }
             }
         });
-=======
+
                signup();
 
 
 
->>>>>>> Stashed changes
+
 
         //sign in tv
         sing_in.setOnClickListener(new View.OnClickListener() {
