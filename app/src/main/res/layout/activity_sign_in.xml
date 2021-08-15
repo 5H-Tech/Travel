@@ -37,12 +37,14 @@ tools:context=".SignIn">
         android:layout_height="50dp"
         android:layout_margin="10dp"
         android:background="@drawable/sh_text_rad"
+        android:drawableStart="@drawable/ic_email"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
-        android:drawableStart="@drawable/ic_email"
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHighlight="@color/highlite"
+        android:textColorHint="@color/white"
+        android:textColorLink="@color/highlite" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -80,6 +82,7 @@ tools:context=".SignIn">
             android:hint="@string/password"
             android:inputType="textPassword"
             android:textColor="@color/white"
+            android:textColorHighlight="@color/highlite"
             android:textColorHint="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -95,7 +98,8 @@ tools:context=".SignIn">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="forget my password?" />
+        android:text="forget my password?"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/signIn_btn"
@@ -176,6 +180,7 @@ tools:context=".SignIn">
         android:layout_weight="1"
         android:gravity="center"
         android:text="or"
+        android:textColor="#FFFFFF"
         android:textSize="18sp" />
 
     <View
@@ -199,7 +204,8 @@ tools:context=".SignIn">
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don’t have account? " />
+        android:text="Don’t have account? "
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/create"

@@ -80,27 +80,34 @@ public class SignIn extends AppCompatActivity {
         s_email = new String(String.valueOf(email.getText()));
         s_pass= new String(String.valueOf(pass.getText()) );
         boolean found = false ;
-        mAuth.signInWithEmailAndPassword(s_email, s_pass)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent =new Intent(getApplicationContext(),Home.class);
-                            startActivity(intent);
+        if(s_email.isEmpty()||s_pass.isEmpty())
+        {
+            Toast.makeText(this,"Pleas enter you information to sign in",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            mAuth.signInWithEmailAndPassword(s_email, s_pass)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "signInWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Intent intent =new Intent(getApplicationContext(),Home.class);
+                                startActivity(intent);
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(getApplication(), "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(getApplication(), "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+
+                            }
+
 
                         }
+                    });
+        }
 
-                        // ...
-                    }
-                });
     }
 }

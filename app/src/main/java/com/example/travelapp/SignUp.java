@@ -11,6 +11,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +28,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +37,6 @@ import java.util.Map;
 import static android.content.ContentValues.TAG;
 
 public class SignUp extends AppCompatActivity {
-    int num =4;
     boolean up=false;
     private FirebaseAuth mAuth;
     private StorageReference mStorageRef;
@@ -48,6 +50,7 @@ public class SignUp extends AppCompatActivity {
             t_phone ,
             t_pass ,
             t_cpass ;
+    TextView sing_in;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,23 +62,27 @@ public class SignUp extends AppCompatActivity {
         t_phone = findViewById(R.id.phone_input);
         t_pass = findViewById(R.id.pass_up);
         t_cpass = findViewById(R.id.c_pass_up);
+        sing_in =findViewById(R.id.tv_singin);
 
         Button btn_show1 = findViewById(R.id.show1_up),
                 btn_show2= findViewById(R.id.show2_up),
                 btn_signup = findViewById(R.id.signup_btn);
 
+        //show pass
         btn_show1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPassword(t_pass);
             }
         });
+        //show conform
         btn_show2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPassword(t_cpass);
             }
         });
+        //main button
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,12 +92,17 @@ public class SignUp extends AppCompatActivity {
                   Intent intent = new Intent(v.getContext(), MainActivity.class);
                   startActivityForResult(intent, 0);
               }
+            }
+        });
 
-
-
-
-    }
-});
+        //sign in tv
+        sing_in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),SignIn.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
