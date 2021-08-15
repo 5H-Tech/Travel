@@ -12,6 +12,9 @@
         <activity android:name=".Destination"
             android:label="Destination"
             android:theme="@style/DemoTheme"></activity>
+        <activity android:name=".EmailverifiyActivity"
+            android:label="Destination"
+            android:theme="@style/DemoTheme"></activity>
         <activity
             android:name=".Home"
             android:theme="@style/DemoTheme" />

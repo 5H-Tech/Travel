@@ -38,7 +38,7 @@ import static android.content.ContentValues.TAG;
 
 public class SignUp extends AppCompatActivity {
     boolean up=false;
-    private FirebaseAuth mAuth;
+    public static FirebaseAuth mAuth;
     private StorageReference mStorageRef;
     //public static ArrayList<User> users= new ArrayList<User>() ;
     private String s_name ,
@@ -86,6 +86,7 @@ public class SignUp extends AppCompatActivity {
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< Updated upstream
               if (signup())
               {
                   Toast.makeText(v.getContext(), "you have registered successfully", Toast.LENGTH_LONG).show();
@@ -94,6 +95,12 @@ public class SignUp extends AppCompatActivity {
               }
             }
         });
+=======
+               signup();
+
+
+
+>>>>>>> Stashed changes
 
         //sign in tv
         sing_in.setOnClickListener(new View.OnClickListener() {
@@ -147,6 +154,8 @@ public class SignUp extends AppCompatActivity {
                                     Map<String, Object> userdata = new HashMap<>();
                                     userdata.put("name", name);
                                     userdata.put("id",user.getUid());
+                                    userdata.put("phone",phone);
+
 
 // Add a new document with a generated ID
                                     mydef.collection("data")
@@ -166,6 +175,9 @@ public class SignUp extends AppCompatActivity {
 
                                 }
                                 Toast.makeText(getApplication(), "Registeration succesfully", Toast.LENGTH_LONG).show();
+
+                                Intent intent = new Intent(getApplicationContext(),EmailverifiyActivity.class);
+                                startActivity(intent);
 
                             }
                             else if (task.getException() instanceof FirebaseAuthUserCollisionException)
