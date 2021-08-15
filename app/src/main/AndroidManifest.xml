@@ -30,7 +30,8 @@
             android:theme="@style/DemoTheme" />
         <activity
             android:name=".Show_travilsActivity"
-            android:theme="@style/DemoTheme" />
+            android:label="Trips"
+            android:theme="@style/Second_Theme" />
         <activity
             android:name=".SignUp"
             android:theme="@style/DemoTheme" />
