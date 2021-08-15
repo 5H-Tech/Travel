@@ -25,8 +25,6 @@
             android:name=".Home"
             android:label="Home"
             android:theme="@style/Second_Theme" />
-
-            android:theme="@style/DemoTheme" />
         <activity
             android:name=".SignIn"
             android:theme="@style/DemoTheme" />

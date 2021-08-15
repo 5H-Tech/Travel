@@ -16,5 +16,6 @@
     <style name="Second_Theme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">#40cd7d</item>
         <item name="titleTextColor">#242846</item>
+        <item name="android:itemBackground">#40cd7d</item>
     </style>
 </resources>
