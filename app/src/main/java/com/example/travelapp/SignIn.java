@@ -29,7 +29,7 @@ public class SignIn extends AppCompatActivity {
     boolean isShow =true;
     private FirebaseAuth mAuth;
     public static ArrayList<User> users= new ArrayList<User>() ;
-    User a = new User("a","a","a","a");
+
     //declaration
     TextView textView;
     public TextView create;
@@ -42,7 +42,7 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         mAuth = FirebaseAuth.getInstance();
-        users.add(a);
+
         //textView = findViewById(R.id.massres);
         create = findViewById(R.id.create);
         signin = findViewById(R.id.signIn_btn);

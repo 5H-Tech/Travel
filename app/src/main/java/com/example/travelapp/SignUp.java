@@ -14,13 +14,22 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
@@ -28,6 +37,7 @@ public class SignUp extends AppCompatActivity {
     int num =4;
     boolean up=false;
     private FirebaseAuth mAuth;
+    private StorageReference mStorageRef;
     //public static ArrayList<User> users= new ArrayList<User>() ;
     private String s_name ,
             s_email,
@@ -43,6 +53,7 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         mAuth = FirebaseAuth.getInstance();
+        mStorageRef = FirebaseStorage.getInstance().getReference();
         t_name= findViewById(R.id.name_input);
         t_emil = findViewById(R.id.email_upup);
         t_phone = findViewById(R.id.phone_input);
@@ -113,11 +124,36 @@ public class SignUp extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(getApplication(), "Registeration succesfully", Toast.LENGTH_LONG).show();
+
                                 // Sign in success, update UI with the signed-in user's information
                                 up=true;
                                 Log.d(TAG, "createUserWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                if(user!=null)
+                                {
+                                    DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/users");
+                                    Map<String, Object> userdata = new HashMap<>();
+                                    userdata.put("name", name);
+                                    userdata.put("id",user.getUid());
+
+// Add a new document with a generated ID
+                                    mydef.collection("data")
+                                            .add(userdata)
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                @Override
+                                                public void onSuccess(DocumentReference documentReference) {
+                                                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.w(TAG, "Error adding document", e);
+                                                }
+                                            });
+
+                                }
+                                Toast.makeText(getApplication(), "Registeration succesfully", Toast.LENGTH_LONG).show();
 
                             }
                             else if (task.getException() instanceof FirebaseAuthUserCollisionException)
@@ -129,11 +165,13 @@ public class SignUp extends AppCompatActivity {
                                 up=false;
                                 Toast.makeText(getApplication(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            }
-
-                            // ...
+                            }// ...
                         }
                     });
+
+
+
+
 
            return up;
         }
