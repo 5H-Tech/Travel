@@ -9,19 +9,23 @@
         android:roundIcon="@drawable/ic_out_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelApp">
-        <activity android:name=".Profile"
-            android:theme="@style/DemoTheme"
-            />
+        <activity android:name=".MainActivity2"></activity>
+        <activity
+            android:name=".Profile"
+            android:theme="@style/DemoTheme" />
         <activity
             android:name=".Destination"
             android:label="Destination"
-            android:theme="@style/DemoTheme" />
+            android:theme="@style/Second_Theme" />
         <activity
             android:name=".EmailverifiyActivity"
             android:label="Destination"
             android:theme="@style/DemoTheme" />
         <activity
             android:name=".Home"
+            android:label="Home"
+            android:theme="@style/Second_Theme" />
+
             android:theme="@style/DemoTheme" />
         <activity
             android:name=".SignIn"
