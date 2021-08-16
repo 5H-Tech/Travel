@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelApp">
         <activity
+            android:name=".Trip_Details"
+            android:exported="true" />
+        <activity
+            android:name=".Admin"
+            android:exported="true" />
+        <activity
             android:name=".Profile"
             android:theme="@style/DemoTheme" />
         <activity

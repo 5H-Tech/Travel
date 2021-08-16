@@ -138,7 +138,7 @@
                 android:background="@drawable/sh_text_rad"
                 android:drawableStart="@drawable/ic_pass"
                 android:ems="10"
-                android:hint="conferm password"
+                android:hint="confirm password"
                 android:inputType="textPassword"
                 android:textColor="@color/white"
                 android:textColorHighlight="@color/highlite"

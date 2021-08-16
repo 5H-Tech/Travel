@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Veirfiy your E-mail"
+        app:title="Verify your E-mail"
         app:titleTextColor="@color/background" />
 
     <LinearLayout
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
-            android:text="Welcom to"
+            android:text="Welcome to"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
@@ -55,13 +55,14 @@
             android:text="Travel"
             android:textColor="@color/white"
             android:textSize="24sp" />
+
         <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:gravity="center"
-            android:text="You must verifiy your email to be able to login"
+            android:text="You must verify your email to be able to login"
             android:textColor="@color/white"
             android:textSize="18sp" />
     </LinearLayout>
@@ -114,6 +115,7 @@
                         android:id="@+id/textView11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="-15dp"
                         android:gravity="center"
                         android:text="Send Email verification"
                         android:textColor="@color/white"
