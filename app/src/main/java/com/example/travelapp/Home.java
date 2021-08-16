@@ -24,14 +24,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Home extends AppCompatActivity {
     String choise;
-    boolean is_air = false, is_bus = false, is_train = false, is_ticket = false;
+    static boolean is_air = false, is_bus = false, is_train = false, is_ticket = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +53,21 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 choise="Airplane";
+                List<Trip> airplane_trips=new ArrayList<>();
+                airplane_trips.clear();
+                for (int i=0;i<MainActivity.trips.size();i++){
+                    if(MainActivity.trips.get(i).getPhoto()==R.drawable.ic_airplane_24dp){
+                        airplane_trips.add(MainActivity.trips.get(i));
+                    }
+                }
+                Show_travilsActivity.Destination=airplane_trips;
                 Intent intent =new Intent(v.getContext(),Destination.class);
                 startActivity(intent);
                 Toast.makeText(Home.this,"your transport is "+choise,Toast.LENGTH_LONG).show();
                 is_air = true;
+                is_bus=false;
+                is_ticket=false;
+                is_train=false;
 
             }
         });
@@ -60,10 +75,21 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 choise="Traine";
+                List<Trip> train_trips=new ArrayList<>();
+                train_trips.clear();
+                for (int i=0;i<MainActivity.trips.size();i++){
+                    if(MainActivity.trips.get(i).getPhoto()==R.drawable.ic_train_60){
+                        train_trips.add(MainActivity.trips.get(i));
+                    }
+                }
+                Show_travilsActivity.Destination=train_trips;
                 Intent intent =new Intent(v.getContext(),Destination.class);
                 startActivity(intent);
                 Toast.makeText(Home.this,"your transport is "+choise,Toast.LENGTH_LONG).show();
                 is_train = true;
+                is_bus=false;
+                is_ticket=false;
+                is_air=false;
             }
         });
         ticket_choise.setOnClickListener(new View.OnClickListener() {
@@ -74,16 +100,30 @@ public class Home extends AppCompatActivity {
                 startActivity(intent);
                 Toast.makeText(Home.this,"your "+choise,Toast.LENGTH_LONG).show();
                 is_ticket = true;
+                is_bus=false;
+                is_air=false;
+                is_train=false;
             }
         });
         bus_choise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 choise="Bus";
+                List<Trip> Bus_trips=new ArrayList<>();
+                Bus_trips.clear();
+                for (int i=0;i<MainActivity.trips.size();i++){
+                    if(MainActivity.trips.get(i).getPhoto()==R.drawable.ic_bus_50){
+                        Bus_trips.add(MainActivity.trips.get(i));
+                    }
+                }
+                Show_travilsActivity.Destination=Bus_trips;
                 Intent intent =new Intent(v.getContext(),Destination.class);
                 startActivity(intent);
                 Toast.makeText(Home.this,"your transport is "+choise,Toast.LENGTH_SHORT).show();
                 is_bus = true;
+                is_air=false;
+                is_ticket=false;
+                is_train=false;
             }
         });
 

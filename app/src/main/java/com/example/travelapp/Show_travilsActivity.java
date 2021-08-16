@@ -23,32 +23,18 @@ import java.util.List;
 public class Show_travilsActivity extends AppCompatActivity {
     RecyclerView travilsview;
     Adpter travilsAdpter;
-    List<Trip> trips=new ArrayList<>();
+    static List<Trip>Destination=new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_travils);
-        Trip t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_train_60);
-        trips.add(t);
-        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_airplane_24dp);
-        trips.add(t);
-        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_bus_50);
-        trips.add(t);
-        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_train_60);
-        trips.add(t);
-        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_bus_50);
-        trips.add(t);
-        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_airplane_24dp);
-        trips.add(t);
-        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_train_60);
-        trips.add(t);
-        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_bus_50);
-        trips.add(t);
+
 
 
         travilsview=findViewById(R.id.recyclerview);
-        travilsAdpter = new Adpter(trips);
+        travilsAdpter = new Adpter(Destination);
         RecyclerView.LayoutManager mylayoutmanager = new LinearLayoutManager(getApplicationContext());
         travilsview.setLayoutManager(mylayoutmanager);
         travilsview.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
@@ -56,14 +42,18 @@ public class Show_travilsActivity extends AppCompatActivity {
         travilsview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), travilsview, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
-                Trip t=trips.get(position);
-                Toast.makeText(getApplicationContext(), String.valueOf(t.getPrice()), Toast.LENGTH_LONG).show();
+                Intent i=new Intent(Show_travilsActivity.this,Trip_Details.class);
+                Trip t=MainActivity.trips.get(position);
+                Trip_Details.from=t.getFrom();
+                Trip_Details.to=t.getTo();
+                Trip_Details.price=t.getPrice();
+                Trip_Details.time=t.getTime();
+                startActivity(i);
             }
 
             @Override
             public void onLongClick(View view, int position) {
-                Trip t=trips.get(position);
+                Trip t=MainActivity.trips.get(position);
                 Toast.makeText(view.getContext(), t.from+" -> "+t.to, Toast.LENGTH_LONG).show();
             }
         }));

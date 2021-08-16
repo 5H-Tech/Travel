@@ -40,7 +40,6 @@ public class Adpter extends RecyclerView.Adapter<Adpter.MyViewHolder>  {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             Trip trip = mylist.get(position);
-
             holder.travel_img.setImageResource(trip.getPhoto());
             holder.from.setText(trip.getFrom());
             holder.to.setText(trip.getTo());
