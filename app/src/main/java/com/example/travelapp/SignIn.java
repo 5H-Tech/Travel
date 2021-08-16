@@ -27,7 +27,7 @@ public class SignIn extends AppCompatActivity {
     private String s_email;
     private String s_pass;
     boolean isShow =true;
-    private FirebaseAuth mAuth;
+    public static FirebaseAuth mAuth;
     public static ArrayList<User> users= new ArrayList<User>() ;
 
     //declaration

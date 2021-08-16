@@ -26,6 +26,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class Home extends AppCompatActivity {
     String choise;
     @Override
@@ -92,13 +95,17 @@ public class Home extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.item1:
-                Toast.makeText(this,"this is your profile",Toast.LENGTH_SHORT).show();
+               Intent intent=new Intent(getApplication(),Profile.class);
+               startActivity(intent);
                 return true;
             case R.id.item2:
                 Toast.makeText(this,"this is information obut us",Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.item3:
-                Toast.makeText(this,"you logged out",Toast.LENGTH_SHORT).show();
+                Intent intentt=new Intent(getApplication(),MainActivity.class);
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(intentt);
                 return true;
         }
         return super.onOptionsItemSelected(item);

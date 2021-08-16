@@ -1,5 +1,6 @@
 package com.example.travelapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,13 +80,17 @@ public class Show_travilsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.item1:
-                Toast.makeText(this,"this is your profile",Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getApplication(),Profile.class);
+                startActivity(intent);
                 return true;
             case R.id.item2:
-                Toast.makeText(this,"this is information obut us",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"this is information about us",Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.item3:
-                Toast.makeText(this,"you logged out",Toast.LENGTH_SHORT).show();
+                Intent intentt=new Intent(getApplication(),MainActivity.class);
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(intentt);
                 return true;
         }
         return super.onOptionsItemSelected(item);

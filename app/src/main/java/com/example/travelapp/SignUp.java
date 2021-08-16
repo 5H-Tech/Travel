@@ -52,7 +52,6 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         mAuth = FirebaseAuth.getInstance();
-        mStorageRef = FirebaseStorage.getInstance().getReference();
         t_name= findViewById(R.id.name_input);
         t_emil = findViewById(R.id.email_upup);
         t_phone = findViewById(R.id.phone_input);

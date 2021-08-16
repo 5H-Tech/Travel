@@ -96,23 +96,6 @@
             android:textColorLink="@color/highlite" />
 
         <EditText
-            android:id="@+id/id_profile"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/sh_text_rad"
-            android:drawableLeft="@drawable/ic_id_icon"
-            android:editable="true"
-            android:ems="10"
-            android:enabled="false"
-            android:hint="ID"
-            android:inputType="phone"
-            android:textColor="@color/white"
-            android:textColorHighlight="@color/highlite"
-            android:textColorHint="@color/white"
-            android:textColorLink="@color/highlite" />
-
-        <EditText
             android:id="@+id/email_porfile"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -157,6 +140,7 @@
             android:textColor="@color/background"
             android:textSize="18sp"
             app:backgroundTint="@color/highlite" />
+
 
     </LinearLayout>
 

@@ -9,7 +9,6 @@
         android:roundIcon="@drawable/ic_out_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelApp">
-        <activity android:name=".MainActivity2"></activity>
         <activity
             android:name=".Profile"
             android:theme="@style/DemoTheme" />

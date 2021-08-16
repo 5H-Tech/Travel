@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Destination extends AppCompatActivity {
     public String s_from;
     public String s_to;
@@ -57,13 +59,17 @@ public class Destination extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.item1:
-                Toast.makeText(this,"this is your profile",Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getApplication(),Profile.class);
+                startActivity(intent);
                 return true;
             case R.id.item2:
                 Toast.makeText(this,"this is information obut us",Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.item3:
-                Toast.makeText(this,"you logged out",Toast.LENGTH_SHORT).show();
+                Intent intentt=new Intent(getApplication(),MainActivity.class);
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(intentt);
                 return true;
         }
         return super.onOptionsItemSelected(item);
