@@ -14,6 +14,11 @@ public class Trip {
         this.photo = photo;
     }
 
+    public Trip(){
+
+    }
+
+
     public String getFrom() {
         return from;
     }

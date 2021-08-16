@@ -31,6 +31,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Home extends AppCompatActivity {
     String choise;
+    boolean is_air = false, is_bus = false, is_train = false, is_ticket = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,8 @@ public class Home extends AppCompatActivity {
                 Intent intent =new Intent(v.getContext(),Destination.class);
                 startActivity(intent);
                 Toast.makeText(Home.this,"your transport is "+choise,Toast.LENGTH_LONG).show();
+                is_air = true;
+
             }
         });
         train_choise.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +63,7 @@ public class Home extends AppCompatActivity {
                 Intent intent =new Intent(v.getContext(),Destination.class);
                 startActivity(intent);
                 Toast.makeText(Home.this,"your transport is "+choise,Toast.LENGTH_LONG).show();
+                is_train = true;
             }
         });
         ticket_choise.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +73,7 @@ public class Home extends AppCompatActivity {
                 Intent intent =new Intent(v.getContext(),Destination.class);
                 startActivity(intent);
                 Toast.makeText(Home.this,"your "+choise,Toast.LENGTH_LONG).show();
+                is_ticket = true;
             }
         });
         bus_choise.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +83,7 @@ public class Home extends AppCompatActivity {
                 Intent intent =new Intent(v.getContext(),Destination.class);
                 startActivity(intent);
                 Toast.makeText(Home.this,"your transport is "+choise,Toast.LENGTH_SHORT).show();
-
+                is_bus = true;
             }
         });
 
