@@ -15,7 +15,8 @@
         <activity
             android:name=".Trip_Details"
             android:exported="true"
-            android:theme="@style/DemoTheme"/>
+            android:label="Trip Details"
+            android:theme="@style/Second_Theme"/>
         <activity
             android:name=".Admin"
             android:exported="true"
