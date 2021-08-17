@@ -39,16 +39,14 @@
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/editText_from"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
+        <Spinner
+            android:id="@+id/spinner_From"
+            android:layout_width="350dp"
+            android:layout_height="52dp"
             android:background="@drawable/sh_text_rad"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text=""
-            android:textColor="@color/white" />
+            android:entries="@array/Destination"
+            android:popupBackground="@color/purple_700"
+            android:scrollbarStyle="insideInset" />
 
         <TextView
             android:id="@+id/textView_to"
@@ -58,16 +56,13 @@
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/editText_to"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
+        <Spinner
+            android:id="@+id/spinner_To"
+            android:layout_width="350dp"
+            android:layout_height="52dp"
             android:background="@drawable/sh_text_rad"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text=""
-            android:textColor="@color/white" />
+            android:entries="@array/Destination"
+            android:popupBackground="@color/purple_700" />
 
     </LinearLayout>
 
@@ -84,7 +79,7 @@
 
         <Button
             android:id="@+id/btn_MyTrip"
-            android:layout_width="match_parent"
+            android:layout_width="375dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/sh_btn_rad"
@@ -95,7 +90,7 @@
 
         <Button
             android:id="@+id/btn_AllTrips"
-            android:layout_width="match_parent"
+            android:layout_width="375dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/sh_btn_rad"

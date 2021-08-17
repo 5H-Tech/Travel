@@ -18,5 +18,8 @@
         <item name="titleTextColor">#242846</item>
         <item name="android:itemBackground">@color/purple_700</item>
         <item name="android:textColor">@color/highlite</item>
+        <item name="colorBackgroundFloating">@color/purple_700</item>
     </style>
+
+
 </resources>

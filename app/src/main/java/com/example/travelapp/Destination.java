@@ -26,8 +26,8 @@ public class Destination extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_destination);
 
-        t_from= findViewById(R.id.editText_from);
-        t_to = findViewById(R.id.editText_to);
+        /*t_from= findViewById(R.id.editText_from);
+        t_to = findViewById(R.id.editText_to);*/
 
         Button btn_mytrip = findViewById(R.id.btn_MyTrip);
         Button btn_alltrips = findViewById(R.id.btn_AllTrips);
