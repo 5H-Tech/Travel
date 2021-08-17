@@ -24,26 +24,27 @@ import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity {
     static List<Trip> trips=new ArrayList<>();
+    static List<Cart> carts=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Trip t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_train_60);
+        Trip t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_train_60,9);
         trips.add(t);
-        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_airplane_24dp);
+        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_airplane_24dp,10);
         trips.add(t);
-        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_bus_50);
-        trips.add(t);
-        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_train_60);
-        trips.add(t);
-        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_bus_50);
-        trips.add(t);
-        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_airplane_24dp);
-        trips.add(t);
-        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_train_60);
-        trips.add(t);
-        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_bus_50);
-        trips.add(t);
+//        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_bus_50,100);
+//        trips.add(t);
+//        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_train_60,150);
+//        trips.add(t);
+//        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_bus_50,200);
+//        trips.add(t);
+//        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_airplane_24dp,30);
+//        trips.add(t);
+//        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_train_60,66);
+//        trips.add(t);
+//        t=new Trip("Egypt", "italy", 15, "30/9", R.drawable.ic_bus_50,120);
+//        trips.add(t);
         Button b1 = findViewById(R.id.btn1);
         TextView sin_Up = findViewById(R.id.signup_tv);
         b1.setOnClickListener(new View.OnClickListener() {
