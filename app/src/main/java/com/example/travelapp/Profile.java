@@ -46,9 +46,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 if (user.getUid().equals(document.getString("id")))
                                 {
-                                name.setText(document.getString("name"));
-                                phone.setText(document.getString("phone"));
-                                break;
+                                    name.setText(document.getString("name"));
+                                    phone.setText(document.getString("phone"));
+                                    break;
                                 }
                             }
                         } else {

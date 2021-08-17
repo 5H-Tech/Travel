@@ -9,12 +9,17 @@
         android:roundIcon="@drawable/ic_out_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelApp">
+        <activity android:name=".About"
+            android:theme="@style/DemoTheme"
+            />
         <activity
             android:name=".Trip_Details"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/DemoTheme"/>
         <activity
             android:name=".Admin"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/DemoTheme"/>
         <activity
             android:name=".Profile"
             android:theme="@style/DemoTheme" />

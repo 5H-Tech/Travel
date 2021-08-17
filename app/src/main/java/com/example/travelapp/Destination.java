@@ -63,7 +63,8 @@ public class Destination extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.item2:
-                Toast.makeText(this,"this is information obut us",Toast.LENGTH_SHORT).show();
+                Intent intent1=new Intent(getApplication(),About.class);
+                startActivity(intent1);
                 return true;
             case R.id.item3:
                 Intent intentt=new Intent(getApplication(),MainActivity.class);

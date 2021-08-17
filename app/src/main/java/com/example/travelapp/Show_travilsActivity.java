@@ -74,7 +74,8 @@ public class Show_travilsActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.item2:
-                Toast.makeText(this,"this is information about us",Toast.LENGTH_SHORT).show();
+                Intent intent1=new Intent(getApplication(),About.class);
+                startActivity(intent1);
                 return true;
             case R.id.item3:
                 Intent intentt=new Intent(getApplication(),MainActivity.class);

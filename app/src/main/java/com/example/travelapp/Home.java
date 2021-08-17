@@ -42,6 +42,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         Button airplane_choise,train_choise,bus_choise,ticket_choise;
+
         airplane_choise=(Button) findViewById(R.id.Airplane_ID);
         train_choise=(Button) findViewById(R.id.Train_ID);
         bus_choise=(Button) findViewById(R.id.Bus_ID);
@@ -144,7 +145,8 @@ public class Home extends AppCompatActivity {
                startActivity(intent);
                 return true;
             case R.id.item2:
-                Toast.makeText(this,"this is information obut us",Toast.LENGTH_SHORT).show();
+                Intent intent1=new Intent(getApplication(),About.class);
+                startActivity(intent1);
                 return true;
             case R.id.item3:
                 Intent intentt=new Intent(getApplication(),MainActivity.class);
