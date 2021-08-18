@@ -47,15 +47,16 @@
                     android:layout_margin="10dp"
                     android:text="egy"
                     android:textColor="@color/background"
-                    android:textSize="18sp" />
+                    android:textSize="14sp" />
 
-                <ImageView
-                    android:id="@+id/imageView3"
+                <TextView
+                    android:id="@+id/textView24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_east_arrow" />
+                    android:text="To"
+                    android:textColor="@color/background" />
 
                 <TextView
                     android:id="@+id/totextid"
@@ -66,7 +67,7 @@
 
                     android:text="TO"
                     android:textColor="@color/background"
-                    android:textSize="18sp" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 

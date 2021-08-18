@@ -91,12 +91,6 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-               signup();
-
-
-
-
-
         //sign in tv
         sing_in.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,7 +31,9 @@ public class Trip_Details extends AppCompatActivity {
         TextView to_txt = (TextView)findViewById(R.id.tv_to);
         TextView price_txt = (TextView)findViewById(R.id.tv_price);
         TextView time_txt = (TextView)findViewById(R.id.tv_time);
-        Button book = (Button)findViewById(R.id.booking);
+        ImageView add = (ImageView) findViewById(R.id.img_add);
+        ImageView remove= (ImageView) findViewById(R.id.img_remove);
+        EditText count = (EditText) findViewById(R.id.tec_count);
 
         Trip t = new Trip();
         if(Home.is_bus){
@@ -47,6 +53,24 @@ public class Trip_Details extends AppCompatActivity {
         to_txt.setText(to);
         price_txt.setText(String.valueOf(price));
         time_txt.setText(time);
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int c = Integer.parseInt(String.valueOf(count.getText()));
+                c++;
+                count.setText(String.valueOf(c));
+            }
+        });
+
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int c = Integer.parseInt(String.valueOf(count.getText()));
+                c--;
+                count.setText(String.valueOf(c));
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
