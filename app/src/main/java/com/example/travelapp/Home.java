@@ -98,7 +98,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 choise="Ticket";
-                Intent intent =new Intent(v.getContext(),Destination.class);
+                Intent intent =new Intent(v.getContext(),ShowCartTrips.class);
                 startActivity(intent);
                 Toast.makeText(Home.this,"your "+choise,Toast.LENGTH_LONG).show();
                 is_ticket = true;
