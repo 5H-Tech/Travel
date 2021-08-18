@@ -67,7 +67,7 @@ public class Destination extends AppCompatActivity {
         btn_alltrips.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Show_travilsActivity.Destination=MainActivity.trips;
+                Show_travilsActivity.Destination=currenttripList;
                 Intent i = new Intent(Destination.this, Show_travilsActivity.class);
                 startActivity(i);
             }
