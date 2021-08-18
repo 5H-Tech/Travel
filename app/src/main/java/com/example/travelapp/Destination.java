@@ -45,6 +45,7 @@ public class Destination extends AppCompatActivity {
                 String From,To;
                 final Spinner from_spinn = (Spinner)findViewById(R.id.spinner_From);
                 final Spinner to_spinn = (Spinner)findViewById(R.id.spinner_To);
+
                 From =from_spinn.getSelectedItem().toString();
                 To =to_spinn.getSelectedItem().toString();
 //                Intent val_of_from = new Intent(Destination.this,Home.class);
@@ -60,21 +61,24 @@ public class Destination extends AppCompatActivity {
                     }
                 }
                 if(! tripList.isEmpty()){
-                Show_travilsActivity.Destination=tripList;
-                Intent i = new Intent(Destination.this, Show_travilsActivity.class);
-                startActivity(i);
+                    Show_travilsActivity.Destination=tripList;
+                    Intent i = new Intent(Destination.this, Show_travilsActivity.class);
+                    startActivity(i);
                 }
                 else Toast.makeText(getApplicationContext(),"This Trip is not Available Now",Toast.LENGTH_SHORT).show();
+                if(tripList.isEmpty()){
+                    Toast.makeText(Destination.this,"This Trip is not Avilable Now",Toast.LENGTH_LONG).show();}
+                else
+                {
+                    Show_travilsActivity.Destination=tripList;
+                    Intent i = new Intent(Destination.this, Show_travilsActivity.class);
+                    startActivity(i);
+                }
+
             }
+
         });
-//        if(tripList.isEmpty()){
-//            Toast.makeText(Destination.this,"This Trip is not Avilable Now",Toast.LENGTH_LONG).show();}
-//        else
-//        {
-//            Show_travilsActivity.Destination=tripList;
-//            Intent i = new Intent(Destination.this, Show_travilsActivity.class);
-//            startActivity(i);
-//        }
+
         btn_alltrips.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

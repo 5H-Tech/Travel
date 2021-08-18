@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Trip t=new Trip("Egypt", "Italy", 18000, "22/9/2021", R.drawable.ic_airplane_24dp,200);
+       /* Trip t=new Trip("Egypt", "Italy", 18000, "22/9/2021", R.drawable.ic_airplane_24dp,200);
         trips.add(t);
         t=new Trip(" Egypt ", "Russia", 25000, "5/11/2021", R.drawable.ic_airplane_24dp,200);
         trips.add(t);
@@ -1808,12 +1807,7 @@ public class MainActivity extends AppCompatActivity {
         t=new Trip("Giza", "Aswan", 65, "24/12/2023", R.drawable.ic_bus_50,25);
         trips.add(t);
         t=new Trip("Giza", "Fayoum", 15, "28/12/2023", R.drawable.ic_bus_50,25);
-        trips.add(t);
-
-
-
-
-
+        trips.add(t);*/
         Button b1 = findViewById(R.id.btn1);
         TextView sin_Up = findViewById(R.id.signup_tv);
         b1.setOnClickListener(new View.OnClickListener() {

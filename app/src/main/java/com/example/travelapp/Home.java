@@ -54,7 +54,8 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                  choise="Airplane";
-                List<Trip> airplane_trips=new ArrayList<>();
+
+                List<Trip> airplane_trips =new ArrayList<>();
                 airplane_trips.clear();
                 for (int i=0;i<MainActivity.trips.size();i++){
                     if(MainActivity.trips.get(i).getPhoto()==R.drawable.ic_airplane_24dp  /*&& MainActivity.trips.get(i).getFrom().equals(From) && MainActivity.trips.get(i).getTo().equals(To)*/){

@@ -23,101 +23,113 @@
         app:titleTextColor="@color/background"
         tools:background="@color/highlite" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="284dp"
-        android:layout_height="133dp"
-        android:layout_marginStart="63dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:srcCompat="@drawable/ic_welcom_logo"
-        tools:ignore="VectorDrawableCompat" />
-
     <LinearLayout
-        android:layout_width="405dp"
-        android:layout_height="295dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="4dp"
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:text="Welcome to"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="284dp"
+            android:layout_height="133dp"
+            app:srcCompat="@drawable/ic_welcom_logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Travel"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="54dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_margin="10dp"
-            android:orientation="horizontal">
+            app:cardBackgroundColor="@color/highlite"
+            app:cardCornerRadius="25dp"
+            tools:layout_marginStart="10dp">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="175dp"
-                android:layout_height="175dp"
-                android:layout_marginTop="45dp"
-                app:cardBackgroundColor="@color/highlite"
-                app:cardCornerRadius="25dp"
-                tools:layout_marginStart="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/addtripbtnid"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/ic_add_600"
+                    tools:ignore="VectorDrawableCompat" />
 
-                    <ImageView
-                        android:id="@+id/addtripbtnid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="35dp"
-                        app:srcCompat="@drawable/ic_add_600"
-                        tools:ignore="VectorDrawableCompat" />
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add Trip"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/textView17"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="48dp"
-                        android:layout_marginTop="-35dp"
-                        android:text="Add Trip"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            app:cardBackgroundColor="@color/highlite"
+            app:cardCornerRadius="25dp"
+            tools:layout_marginStart="20dp">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="175dp"
-                android:layout_height="175dp"
-                android:layout_marginTop="45dp"
-                app:cardBackgroundColor="@color/highlite"
-                app:cardCornerRadius="25dp"
-                tools:layout_marginStart="20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/showalltripsbtnid"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/ic_list_600"
+                    tools:ignore="VectorDrawableCompat" />
 
-                    <ImageView
-                        android:id="@+id/showalltripsbtnid"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="35dp"
-                        app:srcCompat="@drawable/ic_list_600"
-                        tools:ignore="VectorDrawableCompat" />
-
-                    <TextView
-                        android:id="@+id/textView18"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="13dp"
-                        android:layout_marginTop="-35dp"
-                        android:text="Show All Tickets"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Show All Tickets"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
