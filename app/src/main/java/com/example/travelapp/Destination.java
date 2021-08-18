@@ -39,6 +39,7 @@ public class Destination extends AppCompatActivity {
         btn_mytrip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 List<Trip>tripList=new ArrayList<>();
                 tripList.clear();
                 String From,To;
@@ -58,12 +59,22 @@ public class Destination extends AppCompatActivity {
                         tripList.add(currenttripList.get(i));
                     }
                 }
+                if(! tripList.isEmpty()){
                 Show_travilsActivity.Destination=tripList;
                 Intent i = new Intent(Destination.this, Show_travilsActivity.class);
                 startActivity(i);
+                }
+                else Toast.makeText(getApplicationContext(),"This Trip is not Available Now",Toast.LENGTH_SHORT).show();
             }
         });
-
+//        if(tripList.isEmpty()){
+//            Toast.makeText(Destination.this,"This Trip is not Avilable Now",Toast.LENGTH_LONG).show();}
+//        else
+//        {
+//            Show_travilsActivity.Destination=tripList;
+//            Intent i = new Intent(Destination.this, Show_travilsActivity.class);
+//            startActivity(i);
+//        }
         btn_alltrips.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -54,10 +54,6 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                  choise="Airplane";
-                /* Intent from_intent=getIntent();
-                Intent to_intent=getIntent();
-                String From=from_intent.getExtras().getString("From");
-                String To=to_intent.getExtras().getString("To");*/
                 List<Trip> airplane_trips=new ArrayList<>();
                 airplane_trips.clear();
                 for (int i=0;i<MainActivity.trips.size();i++){

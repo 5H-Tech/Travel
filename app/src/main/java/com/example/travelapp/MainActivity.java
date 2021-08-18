@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Trip t=new Trip("Egypt", "France", 180000, "30/9/2021", R.drawable.ic_airplane_24dp,15);
+//        Trip t=new Trip("Egypt", "Egypt", 180000, "30/9/2021", R.drawable.ic_airplane_24dp,15);
 //        trips.add(t);
-//        t=new Trip("Franc", "italy", 25000, "5/10/2021", R.drawable.ic_airplane_24dp,15);
+//        t=new Trip("France", "Italy", 25000, "5/10/2021", R.drawable.ic_airplane_24dp,15);
 //        trips.add(t);
 //        t=new Trip("Russia", "Spain", 20000, "30/9/2021", R.drawable.ic_airplane_24dp,37);
 //        trips.add(t);
@@ -186,10 +186,10 @@ public class MainActivity extends AppCompatActivity {
 //        trips.add(t);
 //        t=new Trip("Alexandria", "Fayoum", 19000, "30/9/2021", R.drawable.ic_bus_50,24);
 //        trips.add(t);
-//
-//
-//
-//        }
+
+
+
+
 
 
         Button b1 = findViewById(R.id.btn1);
