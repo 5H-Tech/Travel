@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/background"
+    android:background="@color/purple_700"
     tools:context=".Admin">
 
     <androidx.appcompat.widget.Toolbar
@@ -33,7 +33,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:srcCompat="@drawable/ic_out_icon" />
+        app:srcCompat="@drawable/ic_welcom_logo"
+        tools:ignore="VectorDrawableCompat" />
 
     <LinearLayout
         android:layout_width="405dp"
@@ -66,11 +67,12 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageView8"
+                        android:id="@+id/addtripbtnid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="35dp"
-                        app:srcCompat="@drawable/ic_add_600" />
+                        app:srcCompat="@drawable/ic_add_600"
+                        tools:ignore="VectorDrawableCompat" />
 
                     <TextView
                         android:id="@+id/textView17"
@@ -98,11 +100,12 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageView7"
+                        android:id="@+id/showalltripsbtnid"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="35dp"
-                        app:srcCompat="@drawable/ic_list_600" />
+                        app:srcCompat="@drawable/ic_list_600"
+                        tools:ignore="VectorDrawableCompat" />
 
                     <TextView
                         android:id="@+id/textView18"

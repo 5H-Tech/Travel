@@ -13,7 +13,12 @@
             android:theme="@style/DemoTheme"
             />
         <activity
-            android:name=".Trip_Details"
+        android:name=".Trip_Details"
+        android:exported="true"
+        android:label="Trip Details"
+        android:theme="@style/Second_Theme"/>
+        <activity
+            android:name=".Add_Trip_Activity"
             android:exported="true"
             android:label="Trip Details"
             android:theme="@style/Second_Theme"/>

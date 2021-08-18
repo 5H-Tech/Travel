@@ -8,15 +8,38 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Admin extends AppCompatActivity {
-
+    ImageView add,show;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+        add=findViewById(R.id.addtripbtnid);
+        show=findViewById(R.id.showalltripsbtnid);
+        show=findViewById(R.id.showalltripsbtnid);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addintent=new Intent(getApplicationContext(),Add_Trip_Activity.class);
+                startActivity(addintent);
+            }
+        });
+
+        show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Show_travilsActivity.Destination=MainActivity.trips;
+                Intent showintent=new Intent(getApplicationContext(),Show_travilsActivity.class);
+                startActivity(showintent);
+            }
+        });
     }
 
     @Override

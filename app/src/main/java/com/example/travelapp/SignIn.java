@@ -17,6 +17,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -27,6 +31,7 @@ public class SignIn extends AppCompatActivity {
     private String s_email;
     private String s_pass;
     boolean isShow =true;
+    public static String Admin_email, Admin_Password;
     public static FirebaseAuth mAuth;
     public static ArrayList<User> users= new ArrayList<User>() ;
 
@@ -41,8 +46,9 @@ public class SignIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        Admin_email="Admin@Travel.com";
+        Admin_Password="Admin123";
         mAuth = FirebaseAuth.getInstance();
-
         //textView = findViewById(R.id.massres);
         create = findViewById(R.id.create);
         signin = findViewById(R.id.signIn_btn);
@@ -61,7 +67,39 @@ public class SignIn extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.trips.clear();
+                DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
+                mydef.collection("trips")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                            String from=document.getString("From");
+                                            String to = document.getString("TO");
+                                            int price = Integer.valueOf(document.get("price").toString());
+                                            int quantity=Integer.valueOf(document.get("Quantity").toString());
+                                            int photo =Integer.valueOf(document.get("Photo").toString());
+                                            String date=document.getString("Date");
+                                            Trip t=new Trip(from, to, price, date, photo, quantity);
+                                            MainActivity.trips.add(t);
+                                    }
+                                } else {
+                                    Log.w(TAG, "Error getting documents.", task.getException());
+                                }
+                            }
+                        });
+                if (email.getText().toString().equals(Admin_email)&&Admin_Password.equals(pass.getText().toString()))
+                {
+                    Intent my = new Intent(v.getContext(),Admin.class);
+                    startActivityForResult(my, 0);
+                }
+                else
+                {
                     signin();
+                }
             }
         });
 

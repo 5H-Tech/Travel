@@ -30,4 +30,13 @@
         <item>Fayoum</item>
 
     </string-array>
+
+    <string-array name="Category">
+        <item>Bus</item>
+
+        <item>Plane</item>
+        <item>Train</item>
+
+
+    </string-array>
 </resources>
