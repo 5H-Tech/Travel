@@ -3,16 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/drawable/ic_add_600.xml" value="0.3828125" />
+        <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/drawable/ic_add_to_cart.xml" value="0.3828125" />
+        <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/drawable/ic_add_to_cart_blue.xml" value="0.3828125" />
         <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/drawable/ic_airplane_24dp.xml" value="0.3828125" />
         <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/drawable/ic_baseline_supervised_user_circle_24.xml" value="0.3828125" />
         <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/drawable/ic_bus_50.xml" value="0.3828125" />
         <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/drawable/sh_btn_rad.xml" value="0.3828125" />
         <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/layout/activity_admin.xml" value="0.2554347826086957" />
+        <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/layout/activity_booked_tickets.xml" value="0.3509963768115942" />
         <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/layout/activity_destination.xml" value="0.2554347826086957" />
         <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/layout/activity_email_verifiecation.xml" value="0.25" />
         <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/layout/activity_home.xml" value="0.2554347826086957" />
         <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/layout/activity_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/layout/activity_show_cart_trips.xml" value="0.3509963768115942" />
         <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/layout/activity_sign_in.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/layout/activity_sign_up.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Haitham Mahmoud/Documents/GitHub/Travel/app/src/main/res/layout/activity_travil_item.xml" value="0.36666666666666664" />
@@ -22,7 +27,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

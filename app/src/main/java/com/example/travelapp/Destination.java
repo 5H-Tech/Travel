@@ -66,14 +66,6 @@ public class Destination extends AppCompatActivity {
                     startActivity(i);
                 }
                 else Toast.makeText(getApplicationContext(),"This Trip is not Available Now",Toast.LENGTH_SHORT).show();
-                if(tripList.isEmpty()){
-                    Toast.makeText(Destination.this,"This Trip is not Avilable Now",Toast.LENGTH_LONG).show();}
-                else
-                {
-                    Show_travilsActivity.Destination=tripList;
-                    Intent i = new Intent(Destination.this, Show_travilsActivity.class);
-                    startActivity(i);
-                }
 
             }
 

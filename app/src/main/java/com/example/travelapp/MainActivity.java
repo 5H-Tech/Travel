@@ -10,10 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       /* Trip t=new Trip("Egypt", "Italy", 18000, "22/9/2021", R.drawable.ic_airplane_24dp,200);
+        /*Trip t=new Trip("Egypt", "Italy", 18000, "22/9/2021", R.drawable.ic_airplane_24dp,200);
         trips.add(t);
         t=new Trip(" Egypt ", "Russia", 25000, "5/11/2021", R.drawable.ic_airplane_24dp,200);
         trips.add(t);
@@ -1807,7 +1811,32 @@ public class MainActivity extends AppCompatActivity {
         t=new Trip("Giza", "Aswan", 65, "24/12/2023", R.drawable.ic_bus_50,25);
         trips.add(t);
         t=new Trip("Giza", "Fayoum", 15, "28/12/2023", R.drawable.ic_bus_50,25);
-        trips.add(t);*/
+        trips.add(t);
+        for(int i = 0; i < trips.size();i++) {
+            DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
+            Map<String, Object> tripdata = new HashMap<>();
+            tripdata.put("From", trips.get(i).from);
+            tripdata.put("TO", trips.get(i).to);
+            tripdata.put("price", trips.get(i).price);
+            tripdata.put("Quantity", trips.get(i).quantity);
+            tripdata.put("Date", trips.get(i).time);
+            tripdata.put("Photo", trips.get(i).photo);
+// Add a new document with a generated ID
+            mydef.collection("trips")
+                    .add(tripdata)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error adding document", e);
+                        }
+                    });
+        }*/
         Button b1 = findViewById(R.id.btn1);
         TextView sin_Up = findViewById(R.id.signup_tv);
         b1.setOnClickListener(new View.OnClickListener() {
