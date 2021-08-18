@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Show_travilsActivity extends AppCompatActivity {
+
     RecyclerView travilsview;
     Adpter travilsAdpter;
     static List<Trip>Destination=new ArrayList<>();

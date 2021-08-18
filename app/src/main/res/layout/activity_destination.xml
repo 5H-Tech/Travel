@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".Destination" >
+    tools:context=".Destination">
 
     <LinearLayout
         android:id="@+id/linearLayout7"
@@ -60,7 +60,8 @@
             android:background="@drawable/sh_text_rad"
             android:entries="@array/Destination"
             android:popupBackground="@color/purple_700"
-            android:scrollbarStyle="insideInset" />
+            android:scrollbarStyle="insideInset"
+            android:splitMotionEvents="true" />
 
         <TextView
             android:id="@+id/textView_to"

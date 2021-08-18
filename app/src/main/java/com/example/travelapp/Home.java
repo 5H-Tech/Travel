@@ -53,11 +53,15 @@ public class Home extends AppCompatActivity {
         airplane_choise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                choise="Airplane";
+                 choise="Airplane";
+                /* Intent from_intent=getIntent();
+                Intent to_intent=getIntent();
+                String From=from_intent.getExtras().getString("From");
+                String To=to_intent.getExtras().getString("To");*/
                 List<Trip> airplane_trips=new ArrayList<>();
                 airplane_trips.clear();
                 for (int i=0;i<MainActivity.trips.size();i++){
-                    if(MainActivity.trips.get(i).getPhoto()==R.drawable.ic_airplane_24dp){
+                    if(MainActivity.trips.get(i).getPhoto()==R.drawable.ic_airplane_24dp  /*&& MainActivity.trips.get(i).getFrom().equals(From) && MainActivity.trips.get(i).getTo().equals(To)*/){
                         airplane_trips.add(MainActivity.trips.get(i));
                     }
                 }
@@ -75,7 +79,7 @@ public class Home extends AppCompatActivity {
         train_choise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                choise="Traine";
+                choise="Train";
                 List<Trip> train_trips=new ArrayList<>();
                 train_trips.clear();
                 for (int i=0;i<MainActivity.trips.size();i++){

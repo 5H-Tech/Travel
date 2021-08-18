@@ -11,8 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Destination extends AppCompatActivity {
@@ -26,8 +28,7 @@ public class Destination extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_destination);
 
-        /*t_from= findViewById(R.id.editText_from);
-        t_to = findViewById(R.id.editText_to);*/
+
 
         Button btn_mytrip = findViewById(R.id.btn_MyTrip);
         Button btn_alltrips = findViewById(R.id.btn_AllTrips);
@@ -35,6 +36,16 @@ public class Destination extends AppCompatActivity {
         btn_mytrip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String From,To;
+                final Spinner from_spinn = (Spinner)findViewById(R.id.spinner_From);
+                final Spinner to_spinn = (Spinner)findViewById(R.id.spinner_To);
+               From =from_spinn.getSelectedItem().toString();
+                To =to_spinn.getSelectedItem().toString();
+                Intent val_of_from = new Intent(Destination.this,Home.class);
+                val_of_from.putExtra("From",From);
+                Intent val_of_to = new Intent(Destination.this,Home.class);
+                val_of_to.putExtra("To",To);
+               // Toast.makeText(Destination.this, "(CharSequence)" +From,Toast.LENGTH_LONG).show();
                 Intent i = new Intent(Destination.this, Show_travilsActivity.class);
                 startActivity(i);
             }
