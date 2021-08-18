@@ -65,7 +65,7 @@ public class Home extends AppCompatActivity {
                         airplane_trips.add(MainActivity.trips.get(i));
                     }
                 }
-                Show_travilsActivity.Destination=airplane_trips;
+                Destination.currenttripList=airplane_trips;
                 Intent intent =new Intent(v.getContext(),Destination.class);
                 startActivity(intent);
                 Toast.makeText(Home.this,"your transport is "+choise,Toast.LENGTH_LONG).show();
@@ -87,7 +87,7 @@ public class Home extends AppCompatActivity {
                         train_trips.add(MainActivity.trips.get(i));
                     }
                 }
-                Show_travilsActivity.Destination=train_trips;
+                Destination.currenttripList=train_trips;
                 Intent intent =new Intent(v.getContext(),Destination.class);
                 startActivity(intent);
                 Toast.makeText(Home.this,"your transport is "+choise,Toast.LENGTH_LONG).show();
@@ -121,7 +121,7 @@ public class Home extends AppCompatActivity {
                         Bus_trips.add(MainActivity.trips.get(i));
                     }
                 }
-                Show_travilsActivity.Destination=Bus_trips;
+                Destination.currenttripList=Bus_trips;
                 Intent intent =new Intent(v.getContext(),Destination.class);
                 startActivity(intent);
                 Toast.makeText(Home.this,"your transport is "+choise,Toast.LENGTH_SHORT).show();

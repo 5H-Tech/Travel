@@ -17,12 +17,15 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Destination extends AppCompatActivity {
     public String s_from;
     public String s_to;
     EditText t_from ;
     EditText t_to;
-
+    public static List<Trip>currenttripList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,16 +39,26 @@ public class Destination extends AppCompatActivity {
         btn_mytrip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                List<Trip>tripList=new ArrayList<>();
+                tripList.clear();
                 String From,To;
                 final Spinner from_spinn = (Spinner)findViewById(R.id.spinner_From);
                 final Spinner to_spinn = (Spinner)findViewById(R.id.spinner_To);
-               From =from_spinn.getSelectedItem().toString();
+                From =from_spinn.getSelectedItem().toString();
                 To =to_spinn.getSelectedItem().toString();
-                Intent val_of_from = new Intent(Destination.this,Home.class);
-                val_of_from.putExtra("From",From);
-                Intent val_of_to = new Intent(Destination.this,Home.class);
-                val_of_to.putExtra("To",To);
+//                Intent val_of_from = new Intent(Destination.this,Home.class);
+//                val_of_from.putExtra("From",From);
+//                Intent val_of_to = new Intent(Destination.this,Home.class);
+//                val_of_to.putExtra("To",To);
                // Toast.makeText(Destination.this, "(CharSequence)" +From,Toast.LENGTH_LONG).show();
+                for (int i=0;i<currenttripList.size();i++)
+                {
+                    if (currenttripList.get(i).from.equals(From)&&currenttripList.get(i).to.equals(To))
+                    {
+                        tripList.add(currenttripList.get(i));
+                    }
+                }
+                Show_travilsActivity.Destination=tripList;
                 Intent i = new Intent(Destination.this, Show_travilsActivity.class);
                 startActivity(i);
             }
@@ -54,6 +67,7 @@ public class Destination extends AppCompatActivity {
         btn_alltrips.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Show_travilsActivity.Destination=MainActivity.trips;
                 Intent i = new Intent(Destination.this, Show_travilsActivity.class);
                 startActivity(i);
             }
