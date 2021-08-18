@@ -9,23 +9,24 @@
         android:roundIcon="@drawable/ic_out_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelApp">
-        <activity android:name=".About"
-            android:theme="@style/DemoTheme"
-            />
+        <activity android:name=".ShowCartTrips"></activity>
         <activity
-        android:name=".Trip_Details"
-        android:exported="true"
-        android:label="Trip Details"
-        android:theme="@style/Second_Theme"/>
+            android:name=".About"
+            android:theme="@style/DemoTheme" />
+        <activity
+            android:name=".Trip_Details"
+            android:exported="true"
+            android:label="Trip Details"
+            android:theme="@style/Second_Theme" />
         <activity
             android:name=".Add_Trip_Activity"
             android:exported="true"
             android:label="Trip Details"
-            android:theme="@style/Second_Theme"/>
+            android:theme="@style/Second_Theme" />
         <activity
             android:name=".Admin"
             android:exported="true"
-            android:theme="@style/DemoTheme"/>
+            android:theme="@style/DemoTheme" />
         <activity
             android:name=".Profile"
             android:theme="@style/DemoTheme" />

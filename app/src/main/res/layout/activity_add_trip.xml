@@ -39,9 +39,9 @@
             android:layout_margin="10dp"
             android:background="@drawable/sh_text_rad"
             android:entries="@array/Destination"
-            android:popupBackground="@color/purple_700"
+            android:popupBackground="@color/background"
             android:scrollbarStyle="insideInset"
-            android:splitMotionEvents="true"/>
+            android:splitMotionEvents="true" />
 
 
 
