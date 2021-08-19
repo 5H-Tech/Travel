@@ -32,15 +32,12 @@ public class Add_Trip_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_add_trip);
         frSpinner=findViewById(R.id.spinner_From);
         toSpinner=findViewById(R.id.spinner_To);
-      //  catSpinner=findViewById(R.id.spinner_cat);
+        catSpinner=findViewById(R.id.spinner_cat);
         price=findViewById(R.id.textprice);
         quantity=findViewById(R.id.textquantityid);
         date=findViewById(R.id.textdate);
         add=findViewById(R.id.addbtnid);
-
-
         add.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 String from = frSpinner.getSelectedItem().toString();
@@ -48,17 +45,14 @@ public class Add_Trip_Activity extends AppCompatActivity {
                 String cat = catSpinner.getSelectedItem().toString();
                 int s_price = Integer.parseInt(price.getText().toString());
                 int s_quantity = Integer.parseInt(quantity.getText().toString());
-                int s_date = Integer.parseInt(date.getText().toString());
+                String s_date = date.getText().toString();
                 int photo_id;
-                /*if (cat.equals("Bus"))
+                if (cat.equals("Bus"))
                     photo_id=R.drawable.ic_bus_50;
                 else if(cat.equals("Plane"))
                     photo_id= R.drawable.ic_airplane_24dp;
                 else
-                    photo_id= R.drawable.ic_train_60;*/
-
-
-
+                    photo_id= R.drawable.ic_train_60;
                 DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
                 Map<String, Object> tripdata = new HashMap<>();
                 tripdata.put("From", from);
@@ -66,7 +60,7 @@ public class Add_Trip_Activity extends AppCompatActivity {
                 tripdata.put("price", s_price);
                 tripdata.put("Quantity", s_quantity);
                 tripdata.put("Date", s_date);
-                tripdata.put("Photo", R.drawable.ic_airplane_24dp);
+                tripdata.put("Photo", photo_id);
 // Add a new document with a generated ID
                 mydef.collection("trips")
                         .add(tripdata)

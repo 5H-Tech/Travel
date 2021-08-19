@@ -176,7 +176,6 @@ public class SignIn extends AppCompatActivity {
                                                                                             String date=document.getString("Date");
                                                                                             Trip t=new Trip(document.getId(),from, to, price, date, photo, quantity);
                                                                                             carttrippp.add(t);
-
                                                                                         }
 
                                                                                     }

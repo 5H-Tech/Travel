@@ -77,7 +77,6 @@
                 android:background="@drawable/sh_text_rad"
                 android:ems="10"
                 android:hint="Price"
-                android:inputType="textPassword"
                 android:textColor="@color/white"
                 android:textColorHighlight="@color/highlite"
                 android:textColorHint="@color/white"
