@@ -44,7 +44,7 @@ public class Show_travilsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view, int position) {
                 Intent i=new Intent(Show_travilsActivity.this,Trip_Details.class);
-                Trip t=MainActivity.trips.get(position);
+                Trip t=Destination.get(position);
                 Trip_Details.from=t.getFrom();
                 Trip_Details.to=t.getTo();
                 Trip_Details.price=t.getPrice();
