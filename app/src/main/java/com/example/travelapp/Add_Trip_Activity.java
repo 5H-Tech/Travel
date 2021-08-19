@@ -32,7 +32,7 @@ public class Add_Trip_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_add_trip);
         frSpinner=findViewById(R.id.spinner_From);
         toSpinner=findViewById(R.id.spinner_To);
-        frSpinner=findViewById(R.id.spinner_cat);
+      //  catSpinner=findViewById(R.id.spinner_cat);
         price=findViewById(R.id.textprice);
         quantity=findViewById(R.id.textquantityid);
         date=findViewById(R.id.textdate);
@@ -46,14 +46,19 @@ public class Add_Trip_Activity extends AppCompatActivity {
                 String from = frSpinner.getSelectedItem().toString();
                 String to = toSpinner.getSelectedItem().toString();
                 String cat = catSpinner.getSelectedItem().toString();
-                int s_price = Integer.valueOf(price.getText().toString());
-                int s_quantity = Integer.valueOf(quantity.getText().toString());
-                int s_date = Integer.valueOf(date.getText().toString());
-                if (price.getText().equals("") || quantity.getText().equals("") || date.getText().equals("")) {
-                    Toast.makeText(getApplicationContext(), "please enter all data", Toast.LENGTH_LONG).show();
-                }
+                int s_price = Integer.parseInt(price.getText().toString());
+                int s_quantity = Integer.parseInt(quantity.getText().toString());
+                int s_date = Integer.parseInt(date.getText().toString());
+                int photo_id;
+                /*if (cat.equals("Bus"))
+                    photo_id=R.drawable.ic_bus_50;
+                else if(cat.equals("Plane"))
+                    photo_id= R.drawable.ic_airplane_24dp;
                 else
-                {
+                    photo_id= R.drawable.ic_train_60;*/
+
+
+
                 DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
                 Map<String, Object> tripdata = new HashMap<>();
                 tripdata.put("From", from);
@@ -61,26 +66,29 @@ public class Add_Trip_Activity extends AppCompatActivity {
                 tripdata.put("price", s_price);
                 tripdata.put("Quantity", s_quantity);
                 tripdata.put("Date", s_date);
-                tripdata.put("Photo", cat);
+                tripdata.put("Photo", R.drawable.ic_airplane_24dp);
 // Add a new document with a generated ID
                 mydef.collection("trips")
                         .add(tripdata)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
+                                Toast.makeText(getApplicationContext(),"sucss",Toast.LENGTH_SHORT).show();
                                 Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
+
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 Log.w(TAG, "Error adding document", e);
+                                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                             }
                         });
 
             }
 
-            }
+
         });
 
     }

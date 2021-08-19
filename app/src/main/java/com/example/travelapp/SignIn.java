@@ -35,6 +35,7 @@ public class SignIn extends AppCompatActivity {
     public static String s ;
     private String s_email;
     private String s_pass;
+    static boolean isAdmin = false;
     boolean isShow =true;
     public static String Admin_email, Admin_Password;
     public static FirebaseAuth mAuth;
@@ -103,11 +104,13 @@ public class SignIn extends AppCompatActivity {
 
                 if (email.getText().toString().equals(Admin_email)&&Admin_Password.equals(pass.getText().toString()))
                 {
+                    isAdmin= true;
                     Intent my = new Intent(v.getContext(),Admin.class);
                     startActivityForResult(my, 0);
                 }
                 else
                 {
+                    isAdmin=false;
                     signin();
                 }
             }
@@ -127,6 +130,8 @@ public class SignIn extends AppCompatActivity {
     private void signin (){
         s_email = new String(String.valueOf(email.getText()));
         s_pass= new String(String.valueOf(pass.getText()) );
+        List<Trip>carttrippp=new ArrayList<>();
+        carttrippp.clear();
         boolean found = false ;
         if(s_email.isEmpty()||s_pass.isEmpty())
         {
@@ -158,7 +163,7 @@ public class SignIn extends AppCompatActivity {
                                                                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                                                             @Override
                                                                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                                                                List<Trip>carttrippp=new ArrayList<>();
+
                                                                                 if (task.isSuccessful()) {
                                                                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                                                                         if (document.getId().equals(documentt.getString("tripid")))

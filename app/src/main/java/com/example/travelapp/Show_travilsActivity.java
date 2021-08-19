@@ -27,12 +27,11 @@ public class Show_travilsActivity extends AppCompatActivity {
     static List<Trip>Destination=new ArrayList<>();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_travils);
-
-
 
         travilsview=findViewById(R.id.recyclerview);
         travilsAdpter = new Adpter(Destination);
@@ -64,6 +63,7 @@ public class Show_travilsActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater =getMenuInflater();
@@ -72,21 +72,24 @@ public class Show_travilsActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.item1:
-                Intent intent=new Intent(getApplication(),Profile.class);
-                startActivity(intent);
-                return true;
-            case R.id.item2:
-                Intent intent1=new Intent(getApplication(),About.class);
-                startActivity(intent1);
-                return true;
-            case R.id.item3:
-                Intent intentt=new Intent(getApplication(),MainActivity.class);
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                startActivity(intentt);
-                return true;
+        if(!SignIn.isAdmin)
+        {
+            switch (item.getItemId()){
+                case R.id.item1:
+                    Intent intent=new Intent(getApplication(),Profile.class);
+                    startActivity(intent);
+                    return true;
+                case R.id.item2:
+                    Intent intent1=new Intent(getApplication(),About.class);
+                    startActivity(intent1);
+                    return true;
+                case R.id.item3:
+                    Intent intentt=new Intent(getApplication(),MainActivity.class);
+                    FirebaseAuth.getInstance().signOut();
+                    finish();
+                    startActivity(intentt);
+                    return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
