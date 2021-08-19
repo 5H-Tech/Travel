@@ -83,7 +83,7 @@ public class SignIn extends AppCompatActivity {
                                             int quantity=Integer.valueOf(document.get("Quantity").toString());
                                             int photo =Integer.valueOf(document.get("Photo").toString());
                                             String date=document.getString("Date");
-                                            Trip t=new Trip(from, to, price, date, photo, quantity);
+                                            Trip t=new Trip(document.getId(),from, to, price, date, photo, quantity);
                                             MainActivity.trips.add(t);
                                     }
                                 } else {

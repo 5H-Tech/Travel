@@ -159,26 +159,7 @@ public class SignUp extends AppCompatActivity {
                                                 Log.w(TAG, "Error adding document", e);
                                             }
                                         });
-                                    DocumentReference cartdef = FirebaseFirestore.getInstance().document("sampledata/carts");
-                                    Map<String, Object> cart = new HashMap<>();
-                                    cart.put("userid", user.getUid());
-                                    cart.put("tripid",null);
-                                    cart.put("quantity",null);
 
-                                    cartdef.collection("cartdata")
-                                            .add(cart)
-                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                                @Override
-                                                public void onSuccess(DocumentReference documentReference) {
-                                                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                                                }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Log.w(TAG, "Error adding document", e);
-                                                }
-                                            });
                                 }
 
                                 Toast.makeText(getApplication(), "Registeration succesfully", Toast.LENGTH_LONG).show();
