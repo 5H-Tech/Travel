@@ -98,7 +98,7 @@ tools:context=".SignIn">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="forget my password?"
+        android:text="forgot your password?"
         android:textColor="@color/white" />
 
     <Button
@@ -211,7 +211,7 @@ tools:context=".SignIn">
         android:id="@+id/create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="create new one"
+        android:text="create a new one"
         android:textColor="@color/highlite" />
 
 </LinearLayout>

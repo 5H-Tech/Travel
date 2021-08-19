@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center|left"
-                android:text="Sup Totoal:  "
+                android:text="Sup Total:  "
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="left"
-                android:text="Totoal: "
+                android:text="Total: "
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 
@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/sh_btn_rad"
-            android:text="Supmet"
+            android:text="Submit"
             android:textColor="@color/background"
             android:textColorHighlight="@color/highlite"
             android:textColorHint="@color/highlite"
