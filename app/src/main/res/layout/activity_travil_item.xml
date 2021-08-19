@@ -53,7 +53,7 @@
                     android:id="@+id/textView24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:text="To"
                     android:textColor="@color/background" />

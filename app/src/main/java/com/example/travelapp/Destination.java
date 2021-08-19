@@ -55,10 +55,18 @@ public class Destination extends AppCompatActivity {
                // Toast.makeText(Destination.this, "(CharSequence)" +From,Toast.LENGTH_LONG).show();
                 for (int i=0;i<currenttripList.size();i++)
                 {
-                    if ((currenttripList.get(i).from.equals(" "+From)||currenttripList.get(i).from.equals(From)||currenttripList.get(i).from.equals(From+" "))&&(currenttripList.get(i).to.equals(" "+To)||currenttripList.get(i).to.equals(To)||currenttripList.get(i).to.equals(To+" ")))
+                    if ((currenttripList.get(i).from.equals(" "+From)||currenttripList.get(i).from.equals(From)
+                            ||currenttripList.get(i).from.equals(From+" ")||currenttripList.get(i).from.equals(" "+From+" "))&&
+                            (currenttripList.get(i).to.equals(" "+To)||currenttripList.get(i).to.equals(To)||
+                                    currenttripList.get(i).to.equals(To+" ")||currenttripList.get(i).to.equals(" "+To+" ")))
                     {
                         tripList.add(currenttripList.get(i));
                     }
+                    /*boolean found = currenttripList.get(i).from.matches(From) && currenttripList.get(i).to.matches(To);
+                    if(found)
+                    {
+                        tripList.add(currenttripList.get(i));
+                    }*/
                 }
                 if(! tripList.isEmpty()){
                     Show_travilsActivity.Destination=tripList;
