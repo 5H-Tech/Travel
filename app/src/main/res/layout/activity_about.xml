@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="The App has been created by a  team of 6 Android developers  to help to make your life easier and faster and help you to book  a ticket to you trip and have  a good time and before you book  the trip you will see all the trip  information."
+                android:text="Travel App has been created by a team of 6 Android developers to make your life easier and faster. It provides you with a flexible booking service that helps you book your ticket(s) to your trip (whether by air or overland) and have a good time. Before you book the desired trip, you will find all the information regarding the trip."
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -113,7 +113,7 @@
                 android:drawablePadding="10dp"
                 android:padding="5dp"
                 android:text="Hadi Ahmed"
-                android:textColor="@color/white"
+                android:textColor="@color/highlite"
                 android:textSize="18sp" />
 
             <TextView
@@ -135,7 +135,7 @@
                 android:drawablePadding="10dp"
                 android:padding="5dp"
                 android:text="Hadi Ehab Ragaa"
-                android:textColor="@color/white"
+                android:textColor="@color/highlite"
                 android:textSize="18sp" />
 
             <TextView
@@ -156,8 +156,8 @@
                 android:drawableStart="@drawable/ic_developer_24dp"
                 android:drawablePadding="10dp"
                 android:padding="5dp"
-                android:text="Farse Ahmed"
-                android:textColor="@color/white"
+                android:text="Fares Ahmed"
+                android:textColor="@color/highlite"
                 android:textSize="18sp" />
 
             <TextView

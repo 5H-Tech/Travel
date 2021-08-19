@@ -144,7 +144,7 @@
                 android:background="@drawable/travil_item_rad"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Hestory"
+                android:text="History"
                 android:textColor="@color/background" />
 
             <Button
