@@ -29,6 +29,7 @@ import static android.content.ContentValues.TAG;
 public class MainActivity extends AppCompatActivity {
     static List<Trip> trips=new ArrayList<>();
     static List<Cart> carts=new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

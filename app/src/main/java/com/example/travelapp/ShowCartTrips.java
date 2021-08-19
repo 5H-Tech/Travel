@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ShowCartTrips extends AppCompatActivity {
     RecyclerView carttravilsview;
-    Adpter carttravilsAdpter;
+    CartAdapter carttravilsAdpter;
     static List<Trip> cartlist=new ArrayList<>();
 
     @Override
@@ -24,7 +24,7 @@ public class ShowCartTrips extends AppCompatActivity {
         setContentView(R.layout.activity_show_cart_trips);
 
         carttravilsview=findViewById(R.id.cartrecyclerview);
-        carttravilsAdpter = new Adpter(cartlist);
+        carttravilsAdpter = new CartAdapter(cartlist);
         RecyclerView.LayoutManager mylayoutmanager = new LinearLayoutManager(getApplicationContext());
         carttravilsview.setLayoutManager(mylayoutmanager);
         carttravilsview.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
@@ -37,8 +37,7 @@ public class ShowCartTrips extends AppCompatActivity {
 
             @Override
             public void onLongClick(View view, int position) {
-                Trip t=MainActivity.trips.get(position);
-                Toast.makeText(view.getContext(), t.from+" -> "+t.to, Toast.LENGTH_LONG).show();
+
             }
         }));
 

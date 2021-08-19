@@ -47,7 +47,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView from, to, price, time;
         EditText quantity;
-        Button add,remove;
+        ImageView add,remove;
         ImageView travel_img;
 
         public MyViewHolder(@NonNull View itemView) {

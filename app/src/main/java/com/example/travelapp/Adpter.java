@@ -54,10 +54,6 @@ public class Adpter extends RecyclerView.Adapter<Adpter.MyViewHolder>  {
     }//enetitemcountgd
 
 
-    private void finissh(Activity c) {
-        c.finish();
-        c.startActivity(c.getIntent());
-    }
 
 
 

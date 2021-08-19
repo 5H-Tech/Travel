@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +25,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
@@ -67,7 +72,10 @@ public class SignIn extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                List<Trip> carttrips=new ArrayList<>();
+                carttrips.clear();
                 MainActivity.trips.clear();
+                MainActivity.carts.clear();
                 DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
                 mydef.collection("trips")
                         .get()
@@ -91,6 +99,8 @@ public class SignIn extends AppCompatActivity {
                                 }
                             }
                         });
+
+
                 if (email.getText().toString().equals(Admin_email)&&Admin_Password.equals(pass.getText().toString()))
                 {
                     Intent my = new Intent(v.getContext(),Admin.class);
@@ -133,6 +143,58 @@ public class SignIn extends AppCompatActivity {
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 if (user.isEmailVerified()) {
+                                    DocumentReference cartdef = FirebaseFirestore.getInstance().document("sampledata/carts");
+                                    cartdef.collection("cartdata")
+                                            .get()
+                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                    if (task.isSuccessful()) {
+                                                        for (QueryDocumentSnapshot documentt : task.getResult()) {
+                                                            if (documentt.getString("userid").equals(user.getUid())) {
+                                                                DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
+                                                                mydef.collection("trips")
+                                                                        .get()
+                                                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                                            @Override
+                                                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                                                List<Trip>carttrippp=new ArrayList<>();
+                                                                                if (task.isSuccessful()) {
+                                                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                                                                        if (document.getId().equals(documentt.getString("tripid")))
+                                                                                        {
+                                                                                            String from=document.getString("From");
+                                                                                            String to = document.getString("TO");
+                                                                                            int price = Integer.valueOf(document.get("price").toString());
+                                                                                            int quantity=Integer.valueOf(documentt.get("quantity").toString());
+                                                                                            int photo =Integer.valueOf(document.get("Photo").toString());
+                                                                                            String date=document.getString("Date");
+                                                                                            Trip t=new Trip(document.getId(),from, to, price, date, photo, quantity);
+                                                                                            carttrippp.add(t);
+
+                                                                                        }
+
+                                                                                    }
+                                                                                    ShowCartTrips.cartlist=carttrippp;
+                                                                                } else {
+                                                                                    Log.w(TAG, "Error getting documents.", task.getException());
+                                                                                }
+
+                                                                            }
+                                                                        });
+                                                            }
+                                                        }
+
+
+
+                                                    } else {
+                                                        Log.w(TAG, "Error getting documents.", task.getException());
+                                                    }
+                                                }
+                                            });
+
+
+
                                     Intent intent = new Intent(getApplicationContext(), Home.class);
                                     startActivity(intent);
                                 }

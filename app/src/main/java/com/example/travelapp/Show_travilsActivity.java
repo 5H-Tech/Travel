@@ -51,6 +51,7 @@ public class Show_travilsActivity extends AppCompatActivity {
                 Trip_Details.time=t.getTime();
                 Trip_Details.id=t.id;
                 Trip_Details.avl_qty=t.quantity;
+
                 startActivity(i);
             }
 

@@ -37,6 +37,7 @@ import static android.content.ContentValues.TAG;
 public class Trip_Details extends AppCompatActivity {
     static String from, to, time,id;
     static int photo,price,avl_qty;
+    public static EditText count;
     FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,8 @@ public class Trip_Details extends AppCompatActivity {
         TextView time_txt = (TextView)findViewById(R.id.tv_time);
         ImageView add = (ImageView) findViewById(R.id.img_add);
         ImageView remove= (ImageView) findViewById(R.id.img_remove);
-        EditText count = (EditText) findViewById(R.id.tec_count);
+        count = (EditText) findViewById(R.id.tec_count);
+
 
         Trip t = new Trip();
         if(Home.is_bus){
@@ -94,7 +96,10 @@ public class Trip_Details extends AppCompatActivity {
                                                     .collection("cartdata").document(document.getId());
                                             Map<String, Object> cart = new HashMap<>();
                                             cart.put("quantity",Integer.valueOf(document.get("quantity").toString())+1);
-                                           cartdef.update(cart);
+                                            count.setText(String.valueOf(Integer.valueOf(document.get("quantity").toString())+1));
+
+                                            cartdef.update(cart);
+
                                             break;
                                         }
 
@@ -111,6 +116,7 @@ public class Trip_Details extends AppCompatActivity {
                                                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                     @Override
                                                     public void onSuccess(DocumentReference documentReference) {
+                                                        count.setText(String.valueOf(1));
                                                         Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
                                                     }
                                                 })
@@ -128,9 +134,8 @@ public class Trip_Details extends AppCompatActivity {
                             }
                         });
 
-                int c = Integer.parseInt(String.valueOf(count.getText()));
-                c++;
-                count.setText(String.valueOf(c));
+
+
             }
         });
 
@@ -154,8 +159,10 @@ public class Trip_Details extends AppCompatActivity {
                                                     .collection("cartdata").document(document.getId());
                                             Map<String, Object> cart = new HashMap<>();
                                             cart.put("quantity",Integer.valueOf(document.get("quantity").toString())-1);
+                                            count.setText(String.valueOf(Integer.valueOf(document.get("quantity").toString())-1));
                                             cartdef.update(cart);
-                                            if (Integer.valueOf(document.get("quantity").toString())<=1)
+
+                                            if (Integer.valueOf(document.get("quantity").toString())<=0)
                                             {
                                                 cartdef.delete();
                                             }
@@ -176,9 +183,8 @@ public class Trip_Details extends AppCompatActivity {
 
 
 
-                int c = Integer.parseInt(String.valueOf(count.getText()));
-                c--;
-                count.setText(String.valueOf(c));
+
+
             }
         });
     }
