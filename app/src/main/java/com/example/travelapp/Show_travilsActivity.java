@@ -63,6 +63,11 @@ public class Show_travilsActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SignIn.get_trips_data();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

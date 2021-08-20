@@ -3,6 +3,7 @@ package com.example.travelapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -38,6 +39,7 @@ public class Trip_Details extends AppCompatActivity {
     static String from, to, time,id;
     static int photo,price,avl_qty;
     public static EditText count;
+    Button confirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,9 @@ public class Trip_Details extends AppCompatActivity {
         ImageView add = (ImageView) findViewById(R.id.img_add);
         ImageView remove= (ImageView) findViewById(R.id.img_remove);
         count = (EditText) findViewById(R.id.tec_count);
+        confirm = (Button)findViewById(R.id.confirm_btn);
+
+
         for (int i=0;i<ShowCartTrips.cartlist.size();i++){
             if(ShowCartTrips.cartlist.get(i).id.equals(id)){
                 count.setText(String.valueOf(ShowCartTrips.cartlist.get(i).quantity));
@@ -84,17 +89,36 @@ public class Trip_Details extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             add_to_cart();
+                count.setText(String.valueOf(Integer.valueOf(count.getText().toString()) + 1));
             }
         });
 
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                remove_from_cart();
+                if(Integer.valueOf(count.getText().toString()) - 1 <= 0){
+                    count.setText(String.valueOf(0));
+                    Toast.makeText(v.getContext(),"You can't remove",Toast.LENGTH_SHORT).show();
+                }
+                else
+                    count.setText(String.valueOf(Integer.valueOf(count.getText().toString()) - 1));
+            }
+        });
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                add_to_cart(v.getContext());
             }
         });
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SignIn.get_trips_data();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater =getMenuInflater();
@@ -123,10 +147,10 @@ public class Trip_Details extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void add_to_cart(){
+    public static void add_to_cart(Context context){
         FirebaseUser user =SignIn.mAuth.getCurrentUser();
-        DocumentReference gettcartdef = FirebaseFirestore.getInstance().document("sampledata/carts");
-        gettcartdef.collection("cartdata")
+        DocumentReference gettcartdef = FirebaseFirestore.getInstance().document("sampledata/trips");
+        gettcartdef.collection("trips")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -134,44 +158,25 @@ public class Trip_Details extends AppCompatActivity {
                         boolean found=false;
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                if (document.getString("tripid").equals(id)&&document.getString("userid").equals(user.getUid()))
+                                if (document.getId().equals(id))
                                 {
                                     found=true;
-                                    DocumentReference cartdef = FirebaseFirestore.getInstance().collection("sampledata").document("carts")
-                                            .collection("cartdata").document(document.getId());
-                                    Map<String, Object> cart = new HashMap<>();
-                                    cart.put("quantity",Integer.valueOf(document.get("quantity").toString())+1);
-                                    count.setText(String.valueOf(Integer.valueOf(document.get("quantity").toString())+1));
+                                    DocumentReference tripdef = FirebaseFirestore.getInstance().collection("sampledata").document("trips")
+                                            .collection("trips").document(document.getId());
+                                    Map<String, Object> tcart = new HashMap<>();
+                                    tcart.put("Quantity",Integer.valueOf(document.get("Quantity").toString())-Integer.valueOf(count.getText().toString()));
 
-                                    cartdef.update(cart);
+                                    tripdef.update(tcart);
+                                    if(count.getText().toString().equals("0"))
+                                        Toast.makeText(context, "Please Enter correct number", Toast.LENGTH_SHORT).show();
+                                    else
+                                        Toast.makeText(context, "Your ticket has been added", Toast.LENGTH_SHORT).show();
 
                                     break;
                                 }
 
                             }
-                            if (found==false)
-                            {
-                                DocumentReference cartdef = FirebaseFirestore.getInstance().document("sampledata/carts");
-                                Map<String, Object> cart = new HashMap<>();
-                                cart.put("userid", user.getUid());
-                                cart.put("tripid",id);
-                                cart.put("quantity",1);
-                                cartdef.collection("cartdata")
-                                        .add(cart)
-                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                            @Override
-                                            public void onSuccess(DocumentReference documentReference) {
-                                                count.setText(String.valueOf(1));
-                                                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Log.w(TAG, "Error adding document", e);
-                                            }
-                                        });
-                            }
+
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
@@ -179,7 +184,7 @@ public class Trip_Details extends AppCompatActivity {
                     }
                 });
     }
-    public static void remove_from_cart(){
+    /*public static void remove_from_cart(){
         FirebaseUser user =SignIn.mAuth.getCurrentUser();
         DocumentReference gettcartdef = FirebaseFirestore.getInstance().document("sampledata/carts");
         gettcartdef.collection("cartdata")
@@ -222,5 +227,5 @@ public class Trip_Details extends AppCompatActivity {
 
                     }
                 });
-    }
+    }*/
 }

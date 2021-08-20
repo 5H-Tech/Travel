@@ -73,33 +73,9 @@ public class SignIn extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Trip> carttrips=new ArrayList<>();
-                carttrips.clear();
-                MainActivity.trips.clear();
-                MainActivity.carts.clear();
-                DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
-                mydef.collection("trips")
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
 
-                                            String from=document.getString("From");
-                                            String to = document.getString("TO");
-                                            int price = Integer.valueOf(document.get("price").toString());
-                                            int quantity=Integer.valueOf(document.get("Quantity").toString());
-                                            int photo =Integer.valueOf(document.get("Photo").toString());
-                                            String date=document.getString("Date");
-                                            Trip t=new Trip(document.getId(),from, to, price, date, photo, quantity);
-                                            MainActivity.trips.add(t);
-                                    }
-                                } else {
-                                    Log.w(TAG, "Error getting documents.", task.getException());
-                                }
-                            }
-                        });
+                get_trips_data();
+
 
 
                 if (email.getText().toString().equals(Admin_email)&&Admin_Password.equals(pass.getText().toString()))
@@ -168,8 +144,33 @@ public class SignIn extends AppCompatActivity {
 }
 
 
-public static void get_cart_data(){
-    List<Trip>carttrippp=new ArrayList<>();
+public static void get_trips_data(){
+    MainActivity.trips.clear();
+
+    DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
+    mydef.collection("trips")
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+
+                            String from=document.getString("From");
+                            String to = document.getString("TO");
+                            int price = Integer.valueOf(document.get("price").toString());
+                            int quantity=Integer.valueOf(document.get("Quantity").toString());
+                            int photo =Integer.valueOf(document.get("Photo").toString());
+                            String date=document.getString("Date");
+                            Trip t=new Trip(document.getId(),from, to, price, date, photo, quantity);
+                            MainActivity.trips.add(t);
+                        }
+                    } else {
+                        Log.w(TAG, "Error getting documents.", task.getException());
+                    }
+                }
+            });
+    /*List<Trip>carttrippp=new ArrayList<>();
     carttrippp.clear();
     FirebaseUser user=SignIn.mAuth.getCurrentUser();
     DocumentReference cartdef = FirebaseFirestore.getInstance().document("sampledata/carts");
@@ -219,7 +220,7 @@ public static void get_cart_data(){
                         Log.w(TAG, "Error getting documents.", task.getException());
                     }
                 }
-            });
+            });*/
 }
 
 

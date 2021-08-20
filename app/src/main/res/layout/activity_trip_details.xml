@@ -85,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="From :"
-                    android:textColor="@color/highlite"
+                    android:textColor="@color/white"
                     android:textSize="24sp" />
 
                 <TextView
@@ -95,7 +95,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Netherlands"
-                    android:textColor="@color/highlite"
+                    android:textColor="@color/white"
                     android:textSize="24sp" />
             </LinearLayout>
 
@@ -110,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="To :"
-                    android:textColor="@color/highlite"
+                    android:textColor="@color/white"
                     android:textSize="24sp" />
 
                 <TextView
@@ -120,7 +120,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Netherlands"
-                    android:textColor="@color/highlite"
+                    android:textColor="@color/white"
                     android:textSize="24sp" />
             </LinearLayout>
 
@@ -135,7 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Price :"
-                    android:textColor="@color/highlite"
+                    android:textColor="@color/white"
                     android:textSize="24sp" />
 
                 <TextView
@@ -145,7 +145,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="50000 L.E"
-                    android:textColor="@color/highlite"
+                    android:textColor="@color/white"
                     android:textSize="24sp" />
             </LinearLayout>
 
@@ -160,7 +160,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Time :"
-                    android:textColor="@color/highlite"
+                    android:textColor="@color/white"
                     android:textSize="24sp" />
 
                 <TextView
@@ -170,7 +170,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="11:00 PM"
-                    android:textColor="@color/highlite"
+                    android:textColor="@color/white"
                     android:textSize="24sp" />
             </LinearLayout>
 
@@ -185,6 +185,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Avl Qty"
+                    android:textColor="@color/white"
                     android:textSize="24sp" />
 
                 <TextView
@@ -193,9 +194,22 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="qq"
+                    android:textColor="@color/white"
                     android:textSize="24sp" />
             </LinearLayout>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/confirm_btn"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+
+            android:layout_margin="10dp"
+            android:background="@drawable/sh_btn_rad"
+            android:text="Confirm"
+            android:textColor="@color/background"
+            android:textSize="18sp"
+            app:backgroundTint="@color/highlite" />
 
     </LinearLayout>
 

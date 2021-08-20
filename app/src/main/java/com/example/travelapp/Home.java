@@ -134,7 +134,7 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        SignIn.get_cart_data();
+        SignIn.get_trips_data();
     }
 
     @Override

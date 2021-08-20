@@ -79,6 +79,12 @@ public class Destination extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        SignIn.get_trips_data();
+    }
+
+    @Override
     public boolean onCreatePanelMenu(int featureId, @NonNull Menu menu) {
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.menu1,menu);
