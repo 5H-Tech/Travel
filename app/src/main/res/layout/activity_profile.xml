@@ -25,7 +25,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/profileimageid"
                 android:layout_width="125dp"
                 android:layout_height="88dp"
                 app:srcCompat="@drawable/ic_welcom_logo" />
@@ -41,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="T"
+                    android:text="U"
                     android:textColor="@color/highlite"
                     android:textSize="24sp" />
 
@@ -50,7 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="ravel"
+                    android:text="pdate your photo"
                     android:textColor="@color/white"
                     android:textSize="24sp" />
             </LinearLayout>
@@ -136,7 +136,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/saveprofilebtnid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -144,7 +144,7 @@
                 android:background="@drawable/travil_item_rad"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="History"
+                android:text="Save profile"
                 android:textColor="@color/background" />
 
             <Button

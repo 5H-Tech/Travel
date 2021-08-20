@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "909005896584",
-    "project_id": "firetravel",
-    "storage_bucket": "firetravel.appspot.com"
+    "project_number": "309233655222",
+    "project_id": "newtravilapp",
+    "storage_bucket": "newtravilapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:909005896584:android:49c24c64c73da98722583d",
+        "mobilesdk_app_id": "1:309233655222:android:b3eeff41c9103f1f813517",
         "android_client_info": {
           "package_name": "com.example.travelapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "909005896584-gn40up10nfsff73f8gv69v0soohlev17.apps.googleusercontent.com",
+          "client_id": "309233655222-7k029nbpftgmk3qlug7tdrcvjmiqr8m5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAKz8KZW7ZsUNtNvBVBDi645vxSyPUyJfE"
+          "current_key": "AIzaSyDzJI9LPABpTwTGUwdJ06eEVrYxSCowDGU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "909005896584-gn40up10nfsff73f8gv69v0soohlev17.apps.googleusercontent.com",
+              "client_id": "309233655222-7k029nbpftgmk3qlug7tdrcvjmiqr8m5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
