@@ -36,6 +36,7 @@ import java.util.List;
 public class Home extends AppCompatActivity {
     String choise;
     static boolean is_air = false, is_bus = false, is_train = false, is_ticket = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,6 +130,11 @@ public class Home extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SignIn.get_cart_data();
     }
 
     @Override

@@ -38,12 +38,12 @@ public class Trip_Details extends AppCompatActivity {
     static String from, to, time,id;
     static int photo,price,avl_qty;
     public static EditText count;
-    FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_details);
-        user =SignIn.mAuth.getCurrentUser();
+
         ImageView transport_view = (ImageView)findViewById(R.id.Transport_id);
         TextView from_txt = (TextView)findViewById(R.id.tv_from);
         TextView to_txt = (TextView)findViewById(R.id.tv_to);
@@ -53,6 +53,12 @@ public class Trip_Details extends AppCompatActivity {
         ImageView add = (ImageView) findViewById(R.id.img_add);
         ImageView remove= (ImageView) findViewById(R.id.img_remove);
         count = (EditText) findViewById(R.id.tec_count);
+        for (int i=0;i<ShowCartTrips.cartlist.size();i++){
+            if(ShowCartTrips.cartlist.get(i).id.equals(id)){
+                count.setText(String.valueOf(ShowCartTrips.cartlist.get(i).quantity));
+                break;
+            }
+        }
 
 
         Trip t = new Trip();
@@ -78,113 +84,14 @@ public class Trip_Details extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                DocumentReference gettcartdef = FirebaseFirestore.getInstance().document("sampledata/carts");
-                gettcartdef.collection("cartdata")
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                boolean found=false;
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        if (document.getString("tripid").equals(id)&&document.getString("userid").equals(user.getUid()))
-                                        {
-                                            found=true;
-                                            DocumentReference cartdef = FirebaseFirestore.getInstance().collection("sampledata").document("carts")
-                                                    .collection("cartdata").document(document.getId());
-                                            Map<String, Object> cart = new HashMap<>();
-                                            cart.put("quantity",Integer.valueOf(document.get("quantity").toString())+1);
-                                            count.setText(String.valueOf(Integer.valueOf(document.get("quantity").toString())+1));
-
-                                            cartdef.update(cart);
-
-                                            break;
-                                        }
-
-                                    }
-                                    if (found==false)
-                                    {
-                                        DocumentReference cartdef = FirebaseFirestore.getInstance().document("sampledata/carts");
-                                        Map<String, Object> cart = new HashMap<>();
-                                        cart.put("userid", user.getUid());
-                                        cart.put("tripid",id);
-                                        cart.put("quantity",1);
-                                        cartdef.collection("cartdata")
-                                                .add(cart)
-                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                                    @Override
-                                                    public void onSuccess(DocumentReference documentReference) {
-                                                        count.setText(String.valueOf(1));
-                                                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Log.w(TAG, "Error adding document", e);
-                                                    }
-                                                });
-                                    }
-                                } else {
-                                    Log.w(TAG, "Error getting documents.", task.getException());
-                                }
-
-                            }
-                        });
-
-
-
+             add_to_cart();
             }
         });
 
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                DocumentReference gettcartdef = FirebaseFirestore.getInstance().document("sampledata/carts");
-                gettcartdef.collection("cartdata")
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                boolean found=false;
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        if (document.getString("tripid").equals(id)&&document.getString("userid").equals(user.getUid()))
-                                        {
-                                            found=true;
-                                            DocumentReference cartdef = FirebaseFirestore.getInstance().collection("sampledata").document("carts")
-                                                    .collection("cartdata").document(document.getId());
-                                            Map<String, Object> cart = new HashMap<>();
-                                            cart.put("quantity",Integer.valueOf(document.get("quantity").toString())-1);
-                                            count.setText(String.valueOf(Integer.valueOf(document.get("quantity").toString())-1));
-                                            cartdef.update(cart);
-
-                                            if (Integer.valueOf(document.get("quantity").toString())<=0)
-                                            {
-                                                cartdef.delete();
-                                            }
-                                            break;
-                                        }
-
-                                    }
-                                    if (found==false)
-                                    {
-                                        Toast.makeText(getApplicationContext(), "you cant remove this trip", Toast.LENGTH_LONG).show();
-                                    }
-                                } else {
-                                    Log.w(TAG, "Error getting documents.", task.getException());
-                                }
-
-                            }
-                        });
-
-
-
-
-
+                remove_from_cart();
             }
         });
     }
@@ -214,5 +121,106 @@ public class Trip_Details extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void add_to_cart(){
+        FirebaseUser user =SignIn.mAuth.getCurrentUser();
+        DocumentReference gettcartdef = FirebaseFirestore.getInstance().document("sampledata/carts");
+        gettcartdef.collection("cartdata")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        boolean found=false;
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if (document.getString("tripid").equals(id)&&document.getString("userid").equals(user.getUid()))
+                                {
+                                    found=true;
+                                    DocumentReference cartdef = FirebaseFirestore.getInstance().collection("sampledata").document("carts")
+                                            .collection("cartdata").document(document.getId());
+                                    Map<String, Object> cart = new HashMap<>();
+                                    cart.put("quantity",Integer.valueOf(document.get("quantity").toString())+1);
+                                    count.setText(String.valueOf(Integer.valueOf(document.get("quantity").toString())+1));
+
+                                    cartdef.update(cart);
+
+                                    break;
+                                }
+
+                            }
+                            if (found==false)
+                            {
+                                DocumentReference cartdef = FirebaseFirestore.getInstance().document("sampledata/carts");
+                                Map<String, Object> cart = new HashMap<>();
+                                cart.put("userid", user.getUid());
+                                cart.put("tripid",id);
+                                cart.put("quantity",1);
+                                cartdef.collection("cartdata")
+                                        .add(cart)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                count.setText(String.valueOf(1));
+                                                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w(TAG, "Error adding document", e);
+                                            }
+                                        });
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+
+                    }
+                });
+    }
+    public static void remove_from_cart(){
+        FirebaseUser user =SignIn.mAuth.getCurrentUser();
+        DocumentReference gettcartdef = FirebaseFirestore.getInstance().document("sampledata/carts");
+        gettcartdef.collection("cartdata")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        boolean found=false;
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if (document.getString("tripid").equals(id)&&document.getString("userid").equals(user.getUid()))
+                                {
+                                    found=true;
+                                    DocumentReference cartdef = FirebaseFirestore.getInstance().collection("sampledata").document("carts")
+                                            .collection("cartdata").document(document.getId());
+                                    Map<String, Object> cart = new HashMap<>();
+                                    cart.put("quantity",Integer.valueOf(document.get("quantity").toString())-1);
+
+                                    if (Integer.valueOf(document.get("quantity").toString())-1<=0)
+                                    {
+                                        count.setText(String.valueOf(Integer.valueOf(document.get("quantity").toString())-1));
+                                        cartdef.delete();
+                                    }else{
+                                        count.setText(String.valueOf(Integer.valueOf(document.get("quantity").toString())-1));
+                                        cartdef.update(cart);
+                                    }
+
+
+                                    break;
+                                }
+
+                            }
+                            if (found==false)
+                            {
+                                Toast.makeText(count.getContext(), "You can't remove this trip", Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+
+                    }
+                });
     }
 }

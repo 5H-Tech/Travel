@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,6 +48,15 @@ public class ShowCartTrips extends AppCompatActivity {
             }
         }));
 
+
+
+        Button submit=(Button)findViewById(R.id.submit_btn);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     
@@ -77,4 +87,6 @@ public class ShowCartTrips extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }

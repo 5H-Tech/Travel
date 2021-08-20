@@ -125,7 +125,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
                 user.updateProfile(profile).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(getApplicationContext(), "user updated", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "User information has been updated successfully", Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -139,7 +139,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
             mStorageRef.putFile(image_uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(getApplicationContext(), "succes to add", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Photo has been uploaded successfully", Toast.LENGTH_LONG).show();
                // profileimageurl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
                     taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override

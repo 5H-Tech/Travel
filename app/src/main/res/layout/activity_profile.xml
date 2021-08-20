@@ -63,7 +63,7 @@
             android:layout_margin="50dp"
             android:text="Profile"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 

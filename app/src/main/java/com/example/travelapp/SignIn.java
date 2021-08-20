@@ -112,6 +112,8 @@ public class SignIn extends AppCompatActivity {
                 {
                     isAdmin=false;
                     signin();
+                    List<Trip>carttrippp=new ArrayList<>();
+                    carttrippp.clear();
                 }
             }
         });
@@ -130,8 +132,6 @@ public class SignIn extends AppCompatActivity {
     private void signin (){
         s_email = new String(String.valueOf(email.getText()));
         s_pass= new String(String.valueOf(pass.getText()) );
-        List<Trip>carttrippp=new ArrayList<>();
-        carttrippp.clear();
         boolean found = false ;
         if(s_email.isEmpty()||s_pass.isEmpty())
         {
@@ -148,57 +148,6 @@ public class SignIn extends AppCompatActivity {
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 if (user.isEmailVerified()) {
-                                    DocumentReference cartdef = FirebaseFirestore.getInstance().document("sampledata/carts");
-                                    cartdef.collection("cartdata")
-                                            .get()
-                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                                    if (task.isSuccessful()) {
-                                                        for (QueryDocumentSnapshot documentt : task.getResult()) {
-                                                            if (documentt.getString("userid").equals(user.getUid())) {
-                                                                DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
-                                                                mydef.collection("trips")
-                                                                        .get()
-                                                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                                                            @Override
-                                                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                                                                                if (task.isSuccessful()) {
-                                                                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                                                                        if (document.getId().equals(documentt.getString("tripid")))
-                                                                                        {
-                                                                                            String from=document.getString("From");
-                                                                                            String to = document.getString("TO");
-                                                                                            int price = Integer.valueOf(document.get("price").toString());
-                                                                                            int quantity=Integer.valueOf(documentt.get("quantity").toString());
-                                                                                            int photo =Integer.valueOf(document.get("Photo").toString());
-                                                                                            String date=document.getString("Date");
-                                                                                            Trip t=new Trip(document.getId(),from, to, price, date, photo, quantity);
-                                                                                            carttrippp.add(t);
-                                                                                        }
-
-                                                                                    }
-                                                                                    ShowCartTrips.cartlist=carttrippp;
-                                                                                } else {
-                                                                                    Log.w(TAG, "Error getting documents.", task.getException());
-                                                                                }
-
-                                                                            }
-                                                                        });
-                                                            }
-                                                        }
-
-
-
-                                                    } else {
-                                                        Log.w(TAG, "Error getting documents.", task.getException());
-                                                    }
-                                                }
-                                            });
-
-
-
                                     Intent intent = new Intent(getApplicationContext(), Home.class);
                                     startActivity(intent);
                                 }
@@ -211,14 +160,66 @@ public class SignIn extends AppCompatActivity {
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
                                 Toast.makeText(getApplication(), "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
-
-
-
                             }
                         }
                     });
         }
 
+}
+
+
+public static void get_cart_data(){
+    List<Trip>carttrippp=new ArrayList<>();
+    carttrippp.clear();
+    FirebaseUser user=SignIn.mAuth.getCurrentUser();
+    DocumentReference cartdef = FirebaseFirestore.getInstance().document("sampledata/carts");
+    cartdef.collection("cartdata")
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot documentt : task.getResult()) {
+                            if (documentt.getString("userid").equals(user.getUid())) {
+                                DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
+                                mydef.collection("trips")
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                                                if (task.isSuccessful()) {
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                                        if (document.getId().equals(documentt.getString("tripid")))
+                                                        {
+                                                            String from=document.getString("From");
+                                                            String to = document.getString("TO");
+                                                            int price = Integer.valueOf(document.get("price").toString());
+                                                            int quantity=Integer.valueOf(documentt.get("quantity").toString());
+                                                            int photo =Integer.valueOf(document.get("Photo").toString());
+                                                            String date=document.getString("Date");
+                                                            Trip t=new Trip(document.getId(),from, to, price, date, photo, quantity);
+                                                            carttrippp.add(t);
+                                                        }
+
+                                                    }
+                                                    ShowCartTrips.cartlist=carttrippp;
+                                                } else {
+                                                    Log.w(TAG, "Error getting documents.", task.getException());
+                                                }
+
+                                            }
+                                        });
+                            }
+                        }
+
+
+
+                    } else {
+                        Log.w(TAG, "Error getting documents.", task.getException());
+                    }
+                }
+            });
 }
 
 
