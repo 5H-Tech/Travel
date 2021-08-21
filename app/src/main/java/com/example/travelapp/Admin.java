@@ -24,6 +24,7 @@ public class Admin extends AppCompatActivity {
         add=findViewById(R.id.addtripbtnid);
         show=findViewById(R.id.showalltripsbtnid);
         show=findViewById(R.id.showalltripsbtnid);
+        Show_travilsActivity.Destination=MainActivity.trips;
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

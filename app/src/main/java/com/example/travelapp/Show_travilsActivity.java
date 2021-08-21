@@ -56,8 +56,7 @@ public class Show_travilsActivity extends AppCompatActivity {
 
             @Override
             public void onLongClick(View view, int position) {
-                Trip t=MainActivity.trips.get(position);
-                Toast.makeText(view.getContext(), t.from+" -> "+t.to, Toast.LENGTH_LONG).show();
+
             }
         }));
 

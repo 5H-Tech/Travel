@@ -168,13 +168,20 @@ public class Trip_Details extends AppCompatActivity {
                                             .collection("trips").document(document.getId());
                                     Map<String, Object> tcart = new HashMap<>();
                                     tcart.put("Quantity",Integer.valueOf(document.get("Quantity").toString())-Integer.valueOf(count.getText().toString()));
+                                    if (Integer.valueOf(count.getText().toString())>Integer.valueOf(document.get("Quantity").toString()))
+                                    {
+                                        Toast.makeText(context, "Sorry there is no available tickits", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else
+                                    {
+                                        tripdef.update(tcart);
 
-                                    tripdef.update(tcart);
                                     if(count.getText().toString().equals("0"))
                                         Toast.makeText(context, "Please Enter correct number", Toast.LENGTH_SHORT).show();
                                     else {
                                         Toast.makeText(context, "Your ticket has been added", Toast.LENGTH_SHORT).show();
                                         add_to_bookied_list(context, from, to, price, Integer.valueOf(count.getText().toString()), time, photo);
+                                    }
                                     }
 
                                     break;
