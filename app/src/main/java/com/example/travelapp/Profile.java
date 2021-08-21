@@ -140,7 +140,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Toast.makeText(getApplicationContext(), "Photo has been uploaded successfully", Toast.LENGTH_LONG).show();
-               // profileimageurl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
                     taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {

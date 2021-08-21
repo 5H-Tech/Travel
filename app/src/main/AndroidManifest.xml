@@ -14,9 +14,6 @@
             android:theme="@style/Second_Theme"
             />
         <activity
-            android:name=".ShowCartTrips"
-            android:theme="@style/Second_Theme" />
-        <activity
             android:name=".About"
             android:theme="@style/DemoTheme" />
         <activity

@@ -39,7 +39,6 @@ public class SignIn extends AppCompatActivity {
     boolean isShow = true;
     public static String Admin_email, Admin_Password;
     public static FirebaseAuth mAuth;
-    public static ArrayList<User> users = new ArrayList<User>();
 
     //declaration
     TextView textView;
@@ -56,7 +55,6 @@ public class SignIn extends AppCompatActivity {
         Admin_email = "Admin@Travel.com";
         Admin_Password = "Admin123";
         mAuth = FirebaseAuth.getInstance();
-        //textView = findViewById(R.id.massres);
         create = findViewById(R.id.create);
         signin = findViewById(R.id.signIn_btn);
         show = findViewById(R.id.show_btn);
@@ -164,57 +162,6 @@ public class SignIn extends AppCompatActivity {
                         }
                     }
                 });
-    /*List<Trip>carttrippp=new ArrayList<>();
-    carttrippp.clear();
-    FirebaseUser user=SignIn.mAuth.getCurrentUser();
-    DocumentReference cartdef = FirebaseFirestore.getInstance().document("sampledata/carts");
-    cartdef.collection("cartdata")
-            .get()
-            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot documentt : task.getResult()) {
-                            if (documentt.getString("userid").equals(user.getUid())) {
-                                DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
-                                mydef.collection("trips")
-                                        .get()
-                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                                                if (task.isSuccessful()) {
-                                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                                        if (document.getId().equals(documentt.getString("tripid")))
-                                                        {
-                                                            String from=document.getString("From");
-                                                            String to = document.getString("TO");
-                                                            int price = Integer.valueOf(document.get("price").toString());
-                                                            int quantity=Integer.valueOf(documentt.get("quantity").toString());
-                                                            int photo =Integer.valueOf(document.get("Photo").toString());
-                                                            String date=document.getString("Date");
-                                                            Trip t=new Trip(document.getId(),from, to, price, date, photo, quantity);
-                                                            carttrippp.add(t);
-                                                        }
-
-                                                    }
-                                                    ShowCartTrips.cartlist=carttrippp;
-                                                } else {
-                                                    Log.w(TAG, "Error getting documents.", task.getException());
-                                                }
-
-                                            }
-                                        });
-                            }
-                        }
-
-
-
-                    } else {
-                        Log.w(TAG, "Error getting documents.", task.getException());
-                    }
-                }
-            });*/
     }
 
     public static void get_cart_data() {
