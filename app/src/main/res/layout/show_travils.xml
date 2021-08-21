@@ -13,9 +13,11 @@
         android:layout_width="0dp"
         android:layout_height="720dp"
         android:layout_gravity="center"
+        android:layout_marginTop="11dp"
         android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="56dp"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/activity_travil_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

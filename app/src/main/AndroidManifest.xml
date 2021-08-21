@@ -9,8 +9,13 @@
         android:roundIcon="@drawable/ic_out_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelApp">
-        <activity android:name=".ShowCartTrips"
-            android:theme="@style/Second_Theme"/>
+        <activity android:name=".Receipt"
+            android:label="Receipt"
+            android:theme="@style/Second_Theme"
+            />
+        <activity
+            android:name=".ShowCartTrips"
+            android:theme="@style/Second_Theme" />
         <activity
             android:name=".About"
             android:theme="@style/DemoTheme" />
