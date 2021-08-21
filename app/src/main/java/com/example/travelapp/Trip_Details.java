@@ -69,12 +69,15 @@ public class Trip_Details extends AppCompatActivity {
         Trip t = new Trip();
         if(Home.is_bus){
             transport_view.setImageResource(R.drawable.ic_bus_50);
+            photo=R.drawable.ic_bus_50;
         }
         else if(Home.is_air){
             transport_view.setImageResource(R.drawable.ic_airplane_24dp);
+            photo=R.drawable.ic_airplane_24dp;
         }
         else if(Home.is_train){
             transport_view.setImageResource(R.drawable.ic_train_60);
+            photo=R.drawable.ic_train_60;
         }
         else if(Home.is_ticket){
             transport_view.setImageResource(R.drawable.ic_ticket_50);
@@ -108,7 +111,7 @@ public class Trip_Details extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                add_to_cart(v.getContext());
+                confirm_booking(v.getContext());
             }
         });
     }
@@ -116,7 +119,7 @@ public class Trip_Details extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        SignIn.get_trips_data();
+
     }
 
     @Override
@@ -147,7 +150,7 @@ public class Trip_Details extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void add_to_cart(Context context){
+    public static void confirm_booking(Context context){
         FirebaseUser user =SignIn.mAuth.getCurrentUser();
         DocumentReference gettcartdef = FirebaseFirestore.getInstance().document("sampledata/trips");
         gettcartdef.collection("trips")
@@ -169,8 +172,10 @@ public class Trip_Details extends AppCompatActivity {
                                     tripdef.update(tcart);
                                     if(count.getText().toString().equals("0"))
                                         Toast.makeText(context, "Please Enter correct number", Toast.LENGTH_SHORT).show();
-                                    else
+                                    else {
                                         Toast.makeText(context, "Your ticket has been added", Toast.LENGTH_SHORT).show();
+                                        add_to_bookied_list(context, from, to, price, Integer.valueOf(count.getText().toString()), time, photo);
+                                    }
 
                                     break;
                                 }
@@ -181,6 +186,38 @@ public class Trip_Details extends AppCompatActivity {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
 
+                    }
+                });
+    }
+
+    public static void add_to_bookied_list(Context context, String from, String to, int s_price, int s_quantity, String s_date, int photo_id)
+    {
+        DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/booked");
+        Map<String, Object> tripdata = new HashMap<>();
+        tripdata.put("userid", SignIn.mAuth.getUid());
+        tripdata.put("From", from);
+        tripdata.put("TO", to);
+        tripdata.put("price", s_price);
+        tripdata.put("Quantity", s_quantity);
+        tripdata.put("Date", s_date);
+        tripdata.put("Photo", photo_id);
+// Add a new document with a generated ID
+        mydef.collection("data")
+                .add(tripdata)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(context,"Trip has been added successfully",Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                        Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });
     }

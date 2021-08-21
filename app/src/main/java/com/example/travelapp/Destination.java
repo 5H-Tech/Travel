@@ -81,7 +81,7 @@ public class Destination extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        SignIn.get_trips_data();
+
     }
 
     @Override

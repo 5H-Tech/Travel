@@ -32,28 +32,29 @@ import java.util.Map;
 import static android.content.ContentValues.TAG;
 
 public class SignIn extends AppCompatActivity {
-    public static String s ;
+    public static String s;
     private String s_email;
     private String s_pass;
     static boolean isAdmin = false;
-    boolean isShow =true;
+    boolean isShow = true;
     public static String Admin_email, Admin_Password;
     public static FirebaseAuth mAuth;
-    public static ArrayList<User> users= new ArrayList<User>() ;
+    public static ArrayList<User> users = new ArrayList<User>();
 
     //declaration
     TextView textView;
     public TextView create;
     public Button signin;
-    public Button show ;
+    public Button show;
     public EditText pass;
     public EditText email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        Admin_email="Admin@Travel.com";
-        Admin_Password="Admin123";
+        Admin_email = "Admin@Travel.com";
+        Admin_Password = "Admin123";
         mAuth = FirebaseAuth.getInstance();
         //textView = findViewById(R.id.massres);
         create = findViewById(R.id.create);
@@ -74,21 +75,17 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                get_trips_data();
+                get_trips_data("trips", "trips");
+                get_cart_data();
 
-
-
-                if (email.getText().toString().equals(Admin_email)&&Admin_Password.equals(pass.getText().toString()))
-                {
-                    isAdmin= true;
-                    Intent my = new Intent(v.getContext(),Admin.class);
+                if (email.getText().toString().equals(Admin_email) && Admin_Password.equals(pass.getText().toString())) {
+                    isAdmin = true;
+                    Intent my = new Intent(v.getContext(), Admin.class);
                     startActivityForResult(my, 0);
-                }
-                else
-                {
-                    isAdmin=false;
+                } else {
+                    isAdmin = false;
                     signin();
-                    List<Trip>carttrippp=new ArrayList<>();
+                    List<Trip> carttrippp = new ArrayList<>();
                     carttrippp.clear();
                 }
             }
@@ -97,24 +94,22 @@ public class SignIn extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent my = new Intent(v.getContext(),SignUp.class);
+                Intent my = new Intent(v.getContext(), SignUp.class);
                 startActivityForResult(my, 0);
-                Toast.makeText(v.getContext(),"hi",Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "hi", Toast.LENGTH_SHORT).show();
             }
         });
 
 
     }
-    private void signin (){
+
+    private void signin() {
         s_email = new String(String.valueOf(email.getText()));
-        s_pass= new String(String.valueOf(pass.getText()) );
-        boolean found = false ;
-        if(s_email.isEmpty()||s_pass.isEmpty())
-        {
-            Toast.makeText(this,"pleas enter date",Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
+        s_pass = new String(String.valueOf(pass.getText()));
+        boolean found = false;
+        if (s_email.isEmpty() || s_pass.isEmpty()) {
+            Toast.makeText(this, "pleas enter date", Toast.LENGTH_SHORT).show();
+        } else {
             mAuth.signInWithEmailAndPassword(s_email, s_pass)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -126,9 +121,7 @@ public class SignIn extends AppCompatActivity {
                                 if (user.isEmailVerified()) {
                                     Intent intent = new Intent(getApplicationContext(), Home.class);
                                     startActivity(intent);
-                                }
-                                else
-                                {
+                                } else {
                                     Toast.makeText(getApplication(), "your Email is not verified", Toast.LENGTH_LONG).show();
                                 }
                             } else {
@@ -141,35 +134,36 @@ public class SignIn extends AppCompatActivity {
                     });
         }
 
-}
+    }
 
 
-public static void get_trips_data(){
-    MainActivity.trips.clear();
+    public static void get_trips_data(String co, String doc) {
+        MainActivity.trips.clear();
 
-    DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
-    mydef.collection("trips")
-            .get()
-            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
 
-                            String from=document.getString("From");
-                            String to = document.getString("TO");
-                            int price = Integer.valueOf(document.get("price").toString());
-                            int quantity=Integer.valueOf(document.get("Quantity").toString());
-                            int photo =Integer.valueOf(document.get("Photo").toString());
-                            String date=document.getString("Date");
-                            Trip t=new Trip(document.getId(),from, to, price, date, photo, quantity);
-                            MainActivity.trips.add(t);
+        DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/" + co);
+        mydef.collection(doc)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                String from = document.getString("From");
+                                String to = document.getString("TO");
+                                int price = Integer.valueOf(document.get("price").toString());
+                                int quantity = Integer.valueOf(document.get("Quantity").toString());
+                                int photo = Integer.valueOf(document.get("Photo").toString());
+                                String date = document.getString("Date");
+                                Trip t = new Trip(document.getId(), from, to, price, date, photo, quantity);
+                                MainActivity.trips.add(t);
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
                         }
-                    } else {
-                        Log.w(TAG, "Error getting documents.", task.getException());
                     }
-                }
-            });
+                });
     /*List<Trip>carttrippp=new ArrayList<>();
     carttrippp.clear();
     FirebaseUser user=SignIn.mAuth.getCurrentUser();
@@ -221,7 +215,38 @@ public static void get_trips_data(){
                     }
                 }
             });*/
+    }
+
+    public static void get_cart_data() {
+        MainActivity.trips.clear();
+        MainActivity.cart.clear();
+
+        DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/booked");
+        mydef.collection("data")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if (document.getString("userid").equals(SignIn.mAuth.getUid())) {
+                                    String from = document.getString("From");
+                                    String to = document.getString("TO");
+                                    int price = Integer.valueOf(document.get("price").toString());
+                                    int quantity = Integer.valueOf(document.get("Quantity").toString());
+                                    int photo = Integer.valueOf(document.get("Photo").toString());
+                                    String date = document.getString("Date");
+                                    Trip t = new Trip(document.getId(), from, to, price, date, photo, quantity);
+                                    MainActivity.cart.add(t);
+                                }
+                            }
+
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+    }
 }
 
-
-}

@@ -99,7 +99,8 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 choise="Ticket";
-                Intent intent =new Intent(v.getContext(),ShowCartTrips.class);
+                Show_travilsActivity.Destination=MainActivity.cart;
+                Intent intent =new Intent(v.getContext(),Show_travilsActivity.class);
                 startActivity(intent);
                 Toast.makeText(Home.this,"your "+choise,Toast.LENGTH_LONG).show();
                 is_ticket = true;
@@ -134,7 +135,8 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        SignIn.get_trips_data();
+        SignIn.get_trips_data("trips","trips");
+        SignIn.get_cart_data();
     }
 
     @Override

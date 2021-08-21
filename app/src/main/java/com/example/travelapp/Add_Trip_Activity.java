@@ -1,5 +1,6 @@
 package com.example.travelapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,40 +54,47 @@ public class Add_Trip_Activity extends AppCompatActivity {
                     photo_id= R.drawable.ic_airplane_24dp;
                 else
                     photo_id= R.drawable.ic_train_60;
-                DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
-                Map<String, Object> tripdata = new HashMap<>();
-                tripdata.put("From", from);
-                tripdata.put("TO", to);
-                tripdata.put("price", s_price);
-                tripdata.put("Quantity", s_quantity);
-                tripdata.put("Date", s_date);
-                tripdata.put("Photo", photo_id);
-// Add a new document with a generated ID
-                mydef.collection("trips")
-                        .add(tripdata)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(getApplicationContext(),"Trip has been added successfully",Toast.LENGTH_SHORT).show();
-                                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                                finish();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
 
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error adding document", e);
-                                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
+                add_trip(getApplicationContext(), from, to, s_price, s_quantity, s_date, photo_id);
+                finish();
             }
 
 
         });
 
     }
+
+    public static void add_trip(Context context, String from, String to, int s_price, int s_quantity, String s_date, int photo_id)
+    {
+        DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
+        Map<String, Object> tripdata = new HashMap<>();
+        tripdata.put("From", from);
+        tripdata.put("TO", to);
+        tripdata.put("price", s_price);
+        tripdata.put("Quantity", s_quantity);
+        tripdata.put("Date", s_date);
+        tripdata.put("Photo", photo_id);
+// Add a new document with a generated ID
+        mydef.collection("trips")
+                .add(tripdata)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(context,"Trip has been added successfully",Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                        Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 
 
 
