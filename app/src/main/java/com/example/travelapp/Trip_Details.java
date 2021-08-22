@@ -2,6 +2,7 @@ package com.example.travelapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static android.content.ContentValues.TAG;
+import static com.example.travelapp.Receipt.ticket_quantity;
 
 public class Trip_Details extends AppCompatActivity {
     static String from, to, time,id;
@@ -114,10 +116,18 @@ public class Trip_Details extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                confirm_booking(v.getContext());
-                Receipt r=new Receipt();
-                Intent receipt_intent=new Intent(getApplication(),Receipt.class);
-                startActivity(receipt_intent);
+                if(count_of_tickets!=0)
+                {
+                    Receipt r=new Receipt();
+                    Intent receipt_intent=new Intent(getApplication(),Receipt.class);
+                    startActivity(receipt_intent);
+                    confirm_booking(v.getContext());
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Please add a ticket",Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
@@ -188,7 +198,9 @@ public class Trip_Details extends AppCompatActivity {
                                         Intent intent = new Intent(context,Receipt.class);
                                         Toast.makeText(context, "Your ticket has been added", Toast.LENGTH_SHORT).show();
                                         add_to_bookied_list(context, from, to, price, Integer.valueOf(count.getText().toString()), time, photo);
-                                        Receipt.ticket_quantity=count_of_tickets;
+                                        ticket_quantity=count_of_tickets;
+                                        //Receipt.tickets_quantity =findViewById(R.id.avl_qun_receipt);
+                                        Receipt.tickets_quantity.setText(String.valueOf(count_of_tickets));
                                     }
                                     }
 

@@ -72,9 +72,13 @@ public class Show_travilsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater =getMenuInflater();
-        inflater.inflate(R.menu.menu1,menu);
-        return true;
+        if(!SignIn.isAdmin)
+        {
+            MenuInflater inflater =getMenuInflater();
+            inflater.inflate(R.menu.menu1,menu);
+            return true;
+        }
+       return false;
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

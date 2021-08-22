@@ -28,7 +28,8 @@ public class Receipt extends AppCompatActivity {
     static int ticket_quantity;
     Button home_btn;
     FirebaseUser user;
-    TextView user_name,price,tickets_quantity,total_price;
+    TextView user_name,price,total_price;
+    public static TextView tickets_quantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +41,9 @@ public class Receipt extends AppCompatActivity {
         price=findViewById(R.id.tv_price_item_receipt);
         price.setText(String.valueOf(Trip_Details.price));
         tickets_quantity=findViewById(R.id.avl_qun_receipt);
-        tickets_quantity.setText(String.valueOf(ticket_quantity));
+        //tickets_quantity.setText(String.valueOf(ticket_quantity));
         total_price=findViewById(R.id.tv_total_parice_receipt);
-        total_price.setText(String.valueOf(Trip_Details.price*ticket_quantity));
+        total_price.setText(String.valueOf(Trip_Details.price*Trip_Details.count_of_tickets));
         DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/users");
         mydef.collection("data")
                 .get()
