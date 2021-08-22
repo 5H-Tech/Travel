@@ -42,16 +42,18 @@ public class Show_travilsActivity extends AppCompatActivity {
         travilsview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), travilsview, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent i=new Intent(Show_travilsActivity.this,Trip_Details.class);
-                Trip t=Destination.get(position);
-                Trip_Details.from=t.getFrom();
-                Trip_Details.to=t.getTo();
-                Trip_Details.price=t.getPrice();
-                Trip_Details.time=t.getTime();
-                Trip_Details.id=t.id;
-                Trip_Details.avl_qty=t.quantity;
-
-                startActivity(i);
+                if(!Home.is_ticket)
+                {
+                    Intent i = new Intent(Show_travilsActivity.this, Trip_Details.class);
+                    Trip t = Destination.get(position);
+                    Trip_Details.from = t.getFrom();
+                    Trip_Details.to = t.getTo();
+                    Trip_Details.price = t.getPrice();
+                    Trip_Details.time = t.getTime();
+                    Trip_Details.id = t.id;
+                    Trip_Details.avl_qty = t.quantity;
+                    startActivity(i);
+                }
             }
 
             @Override

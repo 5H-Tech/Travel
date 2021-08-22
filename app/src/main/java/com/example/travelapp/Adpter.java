@@ -45,6 +45,8 @@ public class Adpter extends RecyclerView.Adapter<Adpter.MyViewHolder>  {
             holder.to.setText(trip.getTo());
             holder.price.setText(String.valueOf(trip.getPrice()));
             holder.time.setText(trip.getTime());
+            holder.qunt.setText(String.valueOf(trip.quantity));
+
     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
@@ -61,7 +63,7 @@ public class Adpter extends RecyclerView.Adapter<Adpter.MyViewHolder>  {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView  from, to, price, time;
+        TextView  from, to, price, time,qunt;
         ImageView travel_img;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -71,6 +73,8 @@ public class Adpter extends RecyclerView.Adapter<Adpter.MyViewHolder>  {
             to =itemView.findViewById(R.id.totextid);
             price = itemView.findViewById(R.id.pricetextid);
             time=itemView.findViewById(R.id.timetextid);
+            qunt= itemView.findViewById(R.id.card_qunt);
+
 
         }
     }

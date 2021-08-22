@@ -20,8 +20,9 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/linearLayout12"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -45,7 +46,8 @@
                     android:id="@+id/fromtextid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
                     android:text="egy"
                     android:textColor="@color/background"
                     android:textSize="14sp" />
@@ -56,16 +58,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:text="To"
+                    android:text=" To "
                     android:textColor="@color/background" />
 
                 <TextView
                     android:id="@+id/totextid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="0dp"
 
+                    android:layout_marginTop="10dp"
                     android:text="TO"
                     android:textColor="@color/background"
                     android:textSize="14sp" />
@@ -100,6 +102,18 @@
                     android:textSize="18sp" />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/card_qunt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/sh_text_background"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="0"
+                android:textColor="@color/highlite"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
