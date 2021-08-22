@@ -39,6 +39,8 @@ public class Trip_Details extends AppCompatActivity {
     static String from, to, time,id;
     static int photo,price,avl_qty;
     public static EditText count;
+    static int count_of_tickets;
+
     Button confirm;
 
     @Override
@@ -56,6 +58,7 @@ public class Trip_Details extends AppCompatActivity {
         ImageView remove= (ImageView) findViewById(R.id.img_remove);
         count = (EditText) findViewById(R.id.tec_count);
         confirm = (Button)findViewById(R.id.confirm_btn);
+        count_of_tickets=0;
 
 
 
@@ -88,6 +91,7 @@ public class Trip_Details extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 count.setText(String.valueOf(Integer.valueOf(count.getText().toString()) + 1));
+                count_of_tickets+=1;
             }
         });
 
@@ -98,8 +102,12 @@ public class Trip_Details extends AppCompatActivity {
                     count.setText(String.valueOf(0));
                     Toast.makeText(v.getContext(),"You can't remove",Toast.LENGTH_SHORT).show();
                 }
-                else
+                else{
                     count.setText(String.valueOf(Integer.valueOf(count.getText().toString()) - 1));
+                    count_of_tickets-=1;
+                }
+
+
             }
         });
 
@@ -107,6 +115,9 @@ public class Trip_Details extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 confirm_booking(v.getContext());
+                Receipt r=new Receipt();
+                Intent receipt_intent=new Intent(getApplication(),Receipt.class);
+                startActivity(receipt_intent);
             }
         });
     }
@@ -165,7 +176,7 @@ public class Trip_Details extends AppCompatActivity {
                                     tcart.put("Quantity",Integer.valueOf(document.get("Quantity").toString())-Integer.valueOf(count.getText().toString()));
                                     if (Integer.valueOf(count.getText().toString())>Integer.valueOf(document.get("Quantity").toString()))
                                     {
-                                        Toast.makeText(context, "Sorry there is no available tickits", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, "Sorry there is no available tickets", Toast.LENGTH_SHORT).show();
                                     }
                                     else
                                     {
@@ -177,7 +188,7 @@ public class Trip_Details extends AppCompatActivity {
                                         Intent intent = new Intent(context,Receipt.class);
                                         Toast.makeText(context, "Your ticket has been added", Toast.LENGTH_SHORT).show();
                                         add_to_bookied_list(context, from, to, price, Integer.valueOf(count.getText().toString()), time, photo);
-
+                                        Receipt.ticket_quantity=count_of_tickets;
                                     }
                                     }
 

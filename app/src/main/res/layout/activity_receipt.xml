@@ -67,7 +67,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Hady"
+                android:text="Hadi"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="price for one tecikt: "
+                android:text="Price for one ticket : "
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -111,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:text="Teckt number : "
+                android:text="Number of ticket(s) : "
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -120,7 +120,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="qq"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -153,7 +152,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Netherlands"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>
