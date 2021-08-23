@@ -42,6 +42,7 @@ public class Trip_Details extends AppCompatActivity {
     static int photo,price,avl_qty;
     public static EditText count;
     static int count_of_tickets;
+    static boolean confirmed;
 
     Button confirm;
 
@@ -61,7 +62,7 @@ public class Trip_Details extends AppCompatActivity {
         count = (EditText) findViewById(R.id.tec_count);
         confirm = (Button)findViewById(R.id.confirm_btn);
         count_of_tickets=0;
-
+        confirmed=false;
 
 
 
@@ -166,7 +167,7 @@ public class Trip_Details extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void confirm_booking(Context context){
+    public static boolean confirm_booking(Context context){
         FirebaseUser user =SignIn.mAuth.getCurrentUser();
         DocumentReference gettcartdef = FirebaseFirestore.getInstance().document("sampledata/trips");
         gettcartdef.collection("trips")
@@ -201,6 +202,9 @@ public class Trip_Details extends AppCompatActivity {
                                         ticket_quantity=count_of_tickets;
                                         //Receipt.tickets_quantity =findViewById(R.id.avl_qun_receipt);
                                         Receipt.tickets_quantity.setText(String.valueOf(count_of_tickets));
+                                        confirmed=true;
+
+
                                     }
                                     }
 
@@ -215,6 +219,7 @@ public class Trip_Details extends AppCompatActivity {
 
                     }
                 });
+        return confirmed;
     }
 
     public static void add_to_bookied_list(Context context, String from, String to, int s_price, int s_quantity, String s_date, int photo_id)

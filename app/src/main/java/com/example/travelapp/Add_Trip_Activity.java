@@ -55,8 +55,9 @@ public class Add_Trip_Activity extends AppCompatActivity {
                 else
                     photo_id= R.drawable.ic_train_60;
 
-                add_trip(getApplicationContext(), from, to, s_price, s_quantity, s_date, photo_id);
-                finish();
+                    add_trip(getApplicationContext(), from, to, s_price, s_quantity, s_date, photo_id);
+                    finish();
+
             }
 
 
@@ -66,6 +67,7 @@ public class Add_Trip_Activity extends AppCompatActivity {
 
     public static void add_trip(Context context, String from, String to, int s_price, int s_quantity, String s_date, int photo_id)
     {
+
         DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
         Map<String, Object> tripdata = new HashMap<>();
         tripdata.put("From", from);
