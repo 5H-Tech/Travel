@@ -27,6 +27,8 @@ public class Add_Trip_Activity extends AppCompatActivity {
     Spinner frSpinner,toSpinner,catSpinner;
     EditText price, quantity, date;
     Button add;
+    static String from,to,cat,s_date;
+    static int s_price,s_quantity,photo_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,31 +43,27 @@ public class Add_Trip_Activity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String from = frSpinner.getSelectedItem().toString();
-                String to = toSpinner.getSelectedItem().toString();
-                String cat = catSpinner.getSelectedItem().toString();
-                int s_price = Integer.parseInt(price.getText().toString());
-                int s_quantity = Integer.parseInt(quantity.getText().toString());
-                String s_date = date.getText().toString();
-                int photo_id;
+                 from = frSpinner.getSelectedItem().toString();
+                 to = toSpinner.getSelectedItem().toString();
+                 cat = catSpinner.getSelectedItem().toString();
+                 s_price = Integer.parseInt(price.getText().toString());
+                 s_quantity = Integer.parseInt(quantity.getText().toString());
+                 s_date = date.getText().toString();
                 if (cat.equals("Bus"))
                     photo_id=R.drawable.ic_bus_50;
                 else if(cat.equals("Plane"))
                     photo_id= R.drawable.ic_airplane_24dp;
                 else
                     photo_id= R.drawable.ic_train_60;
-
-                    add_trip(getApplicationContext(), from, to, s_price, s_quantity, s_date, photo_id);
-                    finish();
-
+                add_trip(getApplicationContext());
+                finish();
             }
 
 
         });
 
     }
-
-    public static void add_trip(Context context, String from, String to, int s_price, int s_quantity, String s_date, int photo_id)
+    public static void add_trip(Context context)
     {
 
         DocumentReference mydef = FirebaseFirestore.getInstance().document("sampledata/trips");
@@ -76,7 +74,7 @@ public class Add_Trip_Activity extends AppCompatActivity {
         tripdata.put("Quantity", s_quantity);
         tripdata.put("Date", s_date);
         tripdata.put("Photo", photo_id);
-// Add a new document with a generated ID
+        // Add a new document with a generated ID
         mydef.collection("trips")
                 .add(tripdata)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -96,8 +94,5 @@ public class Add_Trip_Activity extends AppCompatActivity {
                     }
                 });
     }
-
-
-
 
 }

@@ -36,7 +36,6 @@ public class SignUp extends AppCompatActivity {
     boolean up=false;
     public static FirebaseAuth mAuth;
     private StorageReference mStorageRef;
-    //public static ArrayList<User> users= new ArrayList<User>() ;
     private String s_name ,
             s_email,
             s_phone,
@@ -95,7 +94,7 @@ public class SignUp extends AppCompatActivity {
         sing_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),Receipt.class);
+                Intent intent = new Intent(v.getContext(),SignIn.class);
                 startActivity(intent);
             }
         });
@@ -105,22 +104,23 @@ public class SignUp extends AppCompatActivity {
 
     private boolean signup() {
 
-                String name = t_name.getText().toString();
-                String email = t_emil.getText().toString().trim();
-                String phone = t_phone.getText().toString();
-                String pass = t_pass.getText().toString().trim();
-                String s_cpass = t_cpass.getText().toString();
+        String name = t_name.getText().toString();
+        String email = t_emil.getText().toString().trim();
+        String phone = t_phone.getText().toString();
+        String pass = t_pass.getText().toString().trim();
+        String s_cpass = t_cpass.getText().toString();
 
         if (pass.isEmpty() || name.isEmpty() || email.isEmpty() || phone.isEmpty() || s_cpass.isEmpty()) {
             Toast.makeText(this, "You must fill all filds ... try again ", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (!pass.equals(s_cpass)) {
+        }
+        else if (!pass.equals(s_cpass)) {
             Toast.makeText(this, "your confirmation password is incorrect", Toast.LENGTH_LONG).show();
             return false;
         }
         else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         {
-            t_emil.setError("Eamil is invalid");
+            t_emil.setError("Email is invalid");
             t_emil.requestFocus();
             return false;
         }
