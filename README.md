@@ -16,7 +16,7 @@ It provides you with a flexible booking service that helps you book your ticket(
 
 
 ## uses:
-1. Java , XTML
+1. Java , XML
 2. Firebase
 3. Recycler view
 4. Spinner 
